@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://devcombank.github.io/sitemap.xml 

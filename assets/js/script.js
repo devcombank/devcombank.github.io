@@ -136,3 +136,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Loading và Thông báo
+function showLoading() {
+    document.querySelector('.loading').style.display = 'block';
+}
+
+function hideLoading() {
+    document.querySelector('.loading').style.display = 'none';
+}
+
+function showAlert(type, message) {
+    const alert = document.querySelector(`.alert-${type}`);
+    alert.textContent = message;
+    alert.style.display = 'block';
+    setTimeout(() => {
+        alert.style.display = 'none';
+    }, 3000);
+}
+
+// Back to Top Button
+window.onscroll = function() {
+    const btn = document.getElementById('backToTop');
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+};
+
+document.getElementById('backToTop').onclick = function() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
+
+// Form Submit Handler
+document.querySelector('form').onsubmit = async function(e) {
+    e.preventDefault();
+    showLoading();
+    
+    try {
+        // Xử lý form submission ở đây
+        await submitForm();
+        showAlert('success', 'Giao dịch thành công!');
+    } catch (error) {
+        showAlert('error', 'Có lỗi xảy ra. Vui lòng thử lại!');
+    } finally {
+        hideLoading();
+    }
+};
