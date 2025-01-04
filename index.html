@@ -5,59 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VietLicense.ID - Dịch vụ CCCD Online</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
     <!-- Giữ nguyên phần Navigation đã có -->
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Dịch vụ tạo Profile Fake Chuyên nghiệp</h1>
-            <p>Nhanh chóng - An toàn - Bảo mật tuyệt đối</p>
-            <div class="hero-buttons">
-                <a href="#services" class="btn btn-primary">
-                    <i class="fas fa-id-card"></i> Bắt đầu ngay
-                </a>
-                <a href="#guide" class="btn btn-secondary">
-                    <i class="fas fa-play-circle"></i> Xem hướng dẫn
-                </a>
+    <div class="container">
+        <!-- Header với Navigation -->
+        <header class="header">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="VL">
+                <span>VietLicense.ID</span>
             </div>
-        </div>
-    </section>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="active">Trang Chủ</a></li>
+                    <li><a href="cccd.html">CCCD</a></li>
+                    <li><a href="hochieu.html">Hộ Chiếu</a></li>
+                    <li><a href="fakebill.html">Fake Bill</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">Dịch Vụ Của Chúng Tôi</h2>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Dịch vụ tạo Profile Fake Chuyên nghiệp</h1>
+                <p class="subtitle">Nhanh chóng - An toàn - Bảo mật tuyệt đối</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn primary">Bắt đầu ngay</a>
+                    <a href="#guide" class="btn secondary">Xem hướng dẫn</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <h2>Dịch Vụ Của Chúng Tôi</h2>
             <div class="service-grid">
                 <div class="service-card">
                     <i class="fas fa-id-card"></i>
                     <h3>Fake CCCD</h3>
-                    <p>Dịch vụ Fake cccd</p>
-                    <a href="cccd.html">Fake CCCD</a>
+                    <p>Dịch vụ tạo CCCD với độ chính xác cao</p>
+                    <a href="cccd.html" class="btn-service">Chi tiết</a>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-passport"></i>
                     <h3>Hộ Chiếu</h3>
                     <p>Sắp ra mắt - Dịch vụ tạo Hộ chiếu</p>
-                    <a href="hochieu.html">Hộ chiếu</a>
+                    <a href="hochieu.html" class="btn-service">Chi tiết</a>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-car"></i>
                     <h3>Bằng Lái</h3>
-                    <p>Sắp ra mắt - Dịch vụ tạo Bằng lái xe</p>
-                    <a href="fakebill.html">FAKE bill</a>
+                    <p>Dịch vụ tạo Bằng lái xe các loại</p>
+                    <a href="fakebill.html" class="btn-service">Chi tiết</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Tại Sao Chọn Chúng Tôi?</h2>
-            <div class="features-grid">
+        <!-- Features Section -->
+        <section class="features">
+            <h2>Tại Sao Chọn Chúng Tôi?</h2>
+            <div class="feature-grid">
                 <div class="feature-item">
                     <i class="fas fa-shield-alt"></i>
                     <h3>Bảo Mật Tuyệt Đối</h3>
@@ -66,150 +76,215 @@
                 <div class="feature-item">
                     <i class="fas fa-bolt"></i>
                     <h3>Nhanh Chóng</h3>
-                    <p>Hoàn thành trong vòng 30 giây</p>
+                    <p>Thời gian xử lý nhanh, tạo profile trong vài phút</p>
                 </div>
                 <div class="feature-item">
-                    <i class="fas fa-clock"></i>
-                    <h3>Hoạt Động 24/7</h3>
-                    <p>Phục vụ mọi lúc mọi nơi</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-headset"></i>
-                    <h3>Hỗ Trợ Tận Tình</h3>
-                    <p>Đội ngũ hỗ trợ luôn sẵn sàng giúp đỡ</p>
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Chất Lượng Cao</h3>
+                    <p>Đảm bảo chất lượng và độ chính xác tuyệt đối</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Deposit Section -->
+        <section class="deposit-section">
+            <h2>Nạp Tiền Tài Khoản</h2>
+            <div class="deposit-container">
+                <div class="balance-card">
+                    <div class="balance-header">
+                        <i class="fas fa-wallet"></i>
+                        <h3>Số Dư Hiện Tại</h3>
+                    </div>
+                    <div class="balance-amount">
+                        <span id="currentBalance">0</span>
+                        <span class="currency">VNĐ</span>
+                    </div>
+                    <button class="btn deposit-btn" id="openDepositBtn">
+                        <i class="fas fa-plus-circle"></i>
+                        Nạp Tiền
+                    </button>
+                </div>
+                
+                <div class="price-list">
+                    <h3>Bảng Giá Dịch Vụ</h3>
+                    <div class="price-grid">
+                        <div class="price-item">
+                            <i class="fas fa-id-card"></i>
+                            <h4>Fake CCCD</h4>
+                            <p class="price">50,000 VNĐ</p>
+                        </div>
+                        <div class="price-item">
+                            <i class="fas fa-passport"></i>
+                            <h4>Hộ Chiếu</h4>
+                            <p class="price">100,000 VNĐ</p>
+                        </div>
+                        <div class="price-item">
+                            <i class="fas fa-car"></i>
+                            <h4>Bằng Lái</h4>
+                            <p class="price">70,000 VNĐ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo-symbol">
-                        <span class="logo-letters">VL</span>
-                    </div>
-                    <p>VL FakeProfile.ID - Dịch vụ CCCD Online uy tín hàng đầu</p>
+        <div class="footer-content">
+            <!-- Logo & Intro -->
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="assets/images/logo.png" alt="VL">
+                    <h3>VL FakeProfile.ID</h3>
                 </div>
-                <div class="footer-links">
-                    <h4>Liên Kết</h4>
-                    <ul>
-                        <li><a href="#services">Dịch vụ</a></li>
-                        <li><a href="#guide">Hướng dẫn</a></li>
-                        <li><a href="#support">Hỗ trợ</a></li>
-                        <li><a href="#terms">Điều khoản</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4>Liên Hệ</h4>
-                    <p><i class="fab fa-telegram"></i> Telegram: @alouab</p>
-                    <p><i class="fas fa-envelope"></i> Email: support@vvl6.com</p>
-                </div>
+                <p>Dịch vụ CCCD Online uy tín hàng đầu</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 bản quyền thuộc sở hữu của VVL^</p>
+
+            <!-- Quick Links -->
+            <div class="footer-links">
+                <h4>Liên Kết</h4>
+                <ul>
+                    <li><a href="#services">Dịch vụ</a></li>
+                    <li><a href="#guide">Hướng dẫn</a></li>
+                    <li><a href="#support">Hỗ trợ</a></li>
+                    <li><a href="#terms">Điều khoản</a></li>
+                </ul>
             </div>
+
+            <!-- Contact Info -->
+            <div class="footer-contact">
+                <h4>Liên Hệ</h4>
+                <ul>
+                    <li>
+                        <i class="fab fa-telegram"></i>
+                        <a href="https://t.me/alouab" target="_blank">Telegram: @alouab</a>
+                    </li>
+                    <li>
+                        <i class="far fa-envelope"></i>
+                        <a href="mailto:support@vvl6.com">Email: support@vvl6.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 bản quyền thuộc sở hữu của VVL^</p>
         </div>
     </footer>
 
-    <!-- Thêm modal nạp tiền -->
+    <!-- Modal nạp tiền -->
     <div id="depositModal" class="deposit-modal">
         <div class="deposit-modal-content">
-            <div class="modal-header">
-                <h3>Nạp Tiền Tài Khoản</h3>
-                <button class="close-modal">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Phần nhập số tiền -->
-                <div class="amount-input-section">
-                    <h4>Nhập số tiền muốn nạp</h4>
-                    <div class="amount-input-wrapper">
-                        <input type="text" id="customAmount" placeholder="Ví dụ: 100,000" class="amount-input">
-                        <span class="currency">VNĐ</span>
-                    </div>
-                    <div class="amount-suggestion">
-                        <span>Gợi ý: </span>
-                        <button class="suggest-btn" data-amount="100000">100K</button>
-                        <button class="suggest-btn" data-amount="200000">200K</button>
-                        <button class="suggest-btn" data-amount="500000">500K</button>
-                    </div>
+            <!-- Bước 1: Nhập số tiền -->
+            <div id="step1" class="modal-step active">
+                <div class="modal-header">
+                    <h3><i class="fas fa-wallet"></i> Nạp Tiền Tài Khoản</h3>
+                    <button class="close-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
 
-                <!-- Nút tạo hóa đơn -->
-                <button id="createInvoiceBtn" class="create-invoice-btn" disabled>
-                    <i class="fas fa-file-invoice"></i>
-                    Tạo hóa đơn
-                </button>
-
-                <!-- Phần thông tin chuyển khoản (ẩn ban đầu) -->
-                <div id="invoiceDetails" class="invoice-details hidden">
-                    <div class="invoice-header">
-                        <i class="fas fa-receipt"></i>
-                        <h4>Thông tin chuyển khoản</h4>
-                    </div>
-                    
-                    <div class="bank-info">
-                        <div class="bank-row">
-                            <div class="bank-label">Ngân hàng:</div>
-                            <div class="bank-value">
-                                <span>MB Bank</span>
-                                <button class="copy-btn" data-copy="MB Bank">
-                                    <i class="far fa-copy"></i>
-                                </button>
-                            </div>
+                <div class="modal-body">
+                    <div class="amount-section">
+                        <label>Nhập số tiền muốn nạp:</label>
+                        <div class="amount-input-group">
+                            <input type="text" id="customAmount" placeholder="Ví dụ: 100,000" class="amount-input">
+                            <span class="currency">VNĐ</span>
                         </div>
-                        <div class="bank-row">
-                            <div class="bank-label">Số tài khoản:</div>
-                            <div class="bank-value">
-                                <span>0123456789</span>
-                                <button class="copy-btn" data-copy="0123456789">
-                                    <i class="far fa-copy"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="bank-row">
-                            <div class="bank-label">Chủ tài khoản:</div>
-                            <div class="bank-value">
-                                <span>NGUYEN VAN A</span>
-                                <button class="copy-btn" data-copy="NGUYEN VAN A">
-                                    <i class="far fa-copy"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="bank-row">
-                            <div class="bank-label">Số tiền:</div>
-                            <div class="bank-value">
-                                <span id="invoiceAmount">0 VNĐ</span>
-                                <button class="copy-btn" data-copy="">
-                                    <i class="far fa-copy"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="bank-row">
-                            <div class="bank-label">Nội dung CK:</div>
-                            <div class="bank-value">
-                                <span id="transferCode">NAP VL123456</span>
-                                <button class="copy-btn" data-copy="NAP VL123456">
-                                    <i class="far fa-copy"></i>
-                                </button>
-                            </div>
+                        
+                        <div class="quick-amounts">
+                            <button class="amount-btn" data-amount="100000">100K</button>
+                            <button class="amount-btn" data-amount="200000">200K</button>
+                            <button class="amount-btn" data-amount="500000">500K</button>
                         </div>
                     </div>
 
-                    <div class="qr-section">
-                        <img id="qrCode" src="qr-placeholder.png" alt="QR Code">
-                        <button class="download-qr-btn">
-                            <i class="fas fa-download"></i>
-                            Tải QR Code
-                        </button>
-                    </div>
+                    <button id="createInvoiceBtn" class="create-invoice-btn" disabled>
+                        <i class="fas fa-file-invoice"></i>
+                        Tạo hóa đơn
+                    </button>
+                </div>
+            </div>
 
-                    <div class="invoice-note">
-                        <i class="fas fa-info-circle"></i>
-                        <p>Vui lòng chuyển khoản chính xác số tiền và nội dung để được cộng tiền tự động</p>
+            <!-- Bước 2: Hiển thị hóa đơn -->
+            <div id="step2" class="modal-step">
+                <div class="modal-header">
+                    <h3><i class="fas fa-file-invoice"></i> Hóa Đơn Nạp Tiền</h3>
+                    <button class="close-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="invoice-details">
+                        <div class="bank-info">
+                            <div class="bank-detail">
+                                <span class="label">Ngân hàng:</span>
+                                <div class="value-group">
+                                    <span>MB Bank</span>
+                                    <button class="copy-btn" data-copy="MB Bank">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bank-detail">
+                                <span class="label">Số tài khoản:</span>
+                                <div class="value-group">
+                                    <span>0123456789</span>
+                                    <button class="copy-btn" data-copy="0123456789">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bank-detail">
+                                <span class="label">Chủ tài khoản:</span>
+                                <div class="value-group">
+                                    <span>NGUYEN VAN A</span>
+                                    <button class="copy-btn" data-copy="NGUYEN VAN A">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bank-detail amount-detail">
+                                <span class="label">Số tiền:</span>
+                                <div class="value-group">
+                                    <span id="invoiceAmount">0 VNĐ</span>
+                                    <button class="copy-btn" data-copy="">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bank-detail">
+                                <span class="label">Nội dung CK:</span>
+                                <div class="value-group">
+                                    <span id="transferCode">NAP VL123456</span>
+                                    <button class="copy-btn" data-copy="NAP VL123456">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="qr-section">
+                            <div class="qr-wrapper">
+                                <img id="qrCode" src="assets/images/qr-code.png" alt="QR Code">
+                            </div>
+                            <button class="download-qr">
+                                <i class="fas fa-download"></i>
+                                Tải QR Code
+                            </button>
+                        </div>
+
+                        <div class="notice">
+                            <i class="fas fa-info-circle"></i>
+                            <p>Vui lòng chuyển khoản chính xác số tiền và nội dung để được cộng tiền tự động</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -231,7 +306,7 @@
         </ul>
     </nav>
 
-    <script src="asassets/js/script.js"></script>
+    <script src="/assets/js/script.js"></script>
 </body>
 
 </html>
