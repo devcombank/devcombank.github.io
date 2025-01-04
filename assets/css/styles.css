@@ -1,7 +1,7 @@
 /* Base styles */
 :root {
     --primary-color: #e74c3c;
-    --text-color: #fff;
+    --text-color: #ffffff;
     --bg-dark: #222;
     --bg-darker: #1a1a1a;
 }
@@ -59,8 +59,8 @@ body {
     border: 1px solid #444;
     border-radius: 10px;
     color: var(--text-color);
-    font-size: 16px; /* Tối thiểu 16px để tránh zoom trên iOS */
-    -webkit-appearance: none; /* Loại bỏ style mặc định trên iOS */
+    font-size: 16px;
+    -webkit-appearance: none;
 }
 
 /* Button styles */
