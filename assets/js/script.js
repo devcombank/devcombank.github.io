@@ -85,3 +85,54 @@ window.onclick = function(event) {
         event.target.style.display = 'none';
     }
 }
+
+// Thêm xử lý touch events
+document.addEventListener('DOMContentLoaded', () => {
+    // Prevent double-tap zoom on iOS
+    document.addEventListener('touchend', (e) => {
+        e.preventDefault();
+    }, false);
+
+    // Handle modal scroll
+    const modal = document.querySelector('.modal');
+    let touchStart = 0;
+
+    modal.addEventListener('touchstart', (e) => {
+        touchStart = e.touches[0].pageY;
+    }, false);
+
+    modal.addEventListener('touchmove', (e) => {
+        const touchEnd = e.touches[0].pageY;
+        const modalContent = modal.querySelector('.modal-content');
+        
+        if (modalContent.scrollHeight <= modalContent.clientHeight) {
+            e.preventDefault();
+        } else if (modalContent.scrollTop === 0 && touchEnd > touchStart) {
+            e.preventDefault();
+        } else if (modalContent.scrollHeight - modalContent.scrollTop === modalContent.clientHeight 
+            && touchEnd < touchStart) {
+            e.preventDefault();
+        }
+    }, false);
+
+    // Format amount with better mobile support
+    const amountInput = document.getElementById('amount');
+    amountInput.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value) {
+            value = new Intl.NumberFormat('vi-VN').format(value);
+            e.target.value = value;
+        }
+    });
+
+    // Better touch feedback
+    document.querySelectorAll('button').forEach(button => {
+        button.addEventListener('touchstart', () => {
+            button.style.opacity = '0.7';
+        });
+
+        button.addEventListener('touchend', () => {
+            button.style.opacity = '1';
+        });
+    });
+});
