@@ -57,7 +57,7 @@
             <div class="service-grid">
                 <article class="service-card">
                     <h3>Dịch Vụ CCCD</h3>
-                    <img src="./assets/image/cccd-service.png" 
+                    <img src="./assets/images/cccd-service.png" 
                          alt="Dịch vụ tạo CCCD online - Mẫu CCCD mới nhất" 
                          class="service-image">
                     <p>Tạo CCCD với độ chính xác cao</p>
@@ -97,7 +97,7 @@
             <h2>Nạp Tiền Tài Khoản</h2>
             <div class="payment-container">
                 <div class="qr-code">
-                    <img src="assets/images/qr-payment.png" 
+                    <img src="./assets/images/qr-payment.png" 
                          alt="Mã QR thanh toán VietLicense.ID - Quét để thanh toán" 
                          class="qr-image">
                 </div>
@@ -201,6 +201,14 @@
                 });
             });
         });
+
+        // Thêm hàm submitForm()
+        async function submitForm() {
+            // Xử lý logic form ở đây
+            return new Promise((resolve) => {
+                setTimeout(resolve, 1500); // Giả lập xử lý
+            });
+        }
     </script>
 </body>
 </html>
