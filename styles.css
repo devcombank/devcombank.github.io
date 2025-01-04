@@ -1082,3 +1082,93 @@
         transform: translateY(0);
     }
 }
+
+/* Thanh điều hướng */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
+}
+
+.nav.nav-open {
+    transform: translateX(0);
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: #1a1a1a;
+    height: 100%;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.nav-list li a {
+    color: white;
+    text-decoration: none;
+    padding: 1rem;
+    display: block;
+    transition: 0.3s;
+}
+
+.nav-list li a:hover {
+    background: #333;
+}
+
+/* Nút toggle */
+.nav-toggle {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    padding: 0.5rem;
+}
+
+.hamburger {
+    display: block;
+    position: relative;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+    width: 30px;
+    height: 3px;
+    background: white;
+    border-radius: 1px;
+    transition: transform 0.3s;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+}
+
+.hamburger::before { top: -8px; }
+.hamburger::after { top: 8px; }
+
+/* Animation khi mở menu */
+.nav-open .hamburger {
+    transform: rotate(45deg);
+}
+
+.nav-open .hamburger::before {
+    transform: rotate(90deg);
+    top: 0;
+}
+
+.nav-open .hamburger::after {
+    transform: rotate(90deg);
+    top: 0;
+}
