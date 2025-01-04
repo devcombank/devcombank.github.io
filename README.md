@@ -1,5 +1,6 @@
 # VietLicense.ID
 
+
 Hệ thống dịch vụ CCCD Online - Giải pháp xác thực danh tính trực tuyến.
 
 ## Tổng quan
@@ -61,3 +62,26 @@ Mọi đóng góp đều được chào đón. Vui lòng:
 
 ## License
 [Loại giấy phép của bạn] - Xem file LICENSE.md để biết thêm chi tiết
+=======
+Mô tả ngắn về project của bạn.
+
+project/
+│
+├── index.html # Trang chủ
+│
+├── assets/ # Thư mục chứa tài nguyên
+│ ├── css/ # Stylesheet files
+│ ├── js/ # JavaScript files
+│ ├── images/ # Hình ảnh
+│ └── fonts/ # Font files
+│
+└── README.md # Project documentation
+
+## Cài đặt
+
+Hướng dẫn cài đặt project.
+
+## Sử dụng
+
+Hướng dẫn sử dụng project.
+

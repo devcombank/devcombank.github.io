@@ -1,0 +1,424 @@
+* {
+    font-family: Arial, sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.input-section {
+    flex: 1;
+    max-width: 400px;
+}
+
+.preview-section {
+    flex: 2;
+}
+
+.input-group {
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    display: inline-block;
+    width: 80px;
+    font-weight: bold;
+}
+
+.textInput {
+    width: calc(100% - 90px);
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+}
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+canvas {
+    border: 1px solid #ccc;
+    max-width: 100%;
+    height: auto;
+}
+
+.page-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.notice-box {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+    padding: 15px 20px;
+    margin-bottom: 30px;
+}
+
+.notice-box h3 {
+    color: #dc3545;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.notice-box ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.notice-box li {
+    color: #495057;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+#canvas {
+    display: none;
+}
+
+.navbar {
+    background-color: #2c3e50;
+    padding: 15px 0;
+    margin-bottom: 30px;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.logo-symbol {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-10deg);
+    box-shadow: 0 2px 15px rgba(231, 76, 60, 0.3),
+                inset 0 2px 10px rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.logo-symbol::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%
+    );
+    animation: shine 4s infinite;
+    filter: blur(3px);
+}
+
+.logo-symbol::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%);
+    border-radius: 10px;
+}
+
+.logo-letters {
+    color: white;
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2),
+                 -1px -1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.logo-text {
+    color: white;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #fff, #f1c40f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+.logo-dot {
+    color: #e74c3c;
+    font-size: 28px;
+    margin: 0 2px;
+    text-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+    animation: pulse 2s infinite;
+}
+
+/* Animation cho hiệu ứng nhấp nháy */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+/* Hiệu ứng hover nâng cao */
+.nav-logo:hover .logo-symbol {
+    transform: rotate(0deg) scale(1.15);
+    box-shadow: 0 5px 20px rgba(231, 76, 60, 0.5),
+                inset 0 2px 15px rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-logo:hover .logo-letters {
+    animation: letterGlow 1s ease-in-out;
+}
+
+.nav-logo:hover .logo-text {
+    background: linear-gradient(to right, #fff, #f1c40f, #e74c3c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
+}
+
+@keyframes letterGlow {
+    0% { text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2); }
+    50% { text-shadow: 2px 2px 15px rgba(255, 255, 255, 0.5); }
+    100% { text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2); }
+}
+
+/* Glass effect cho container */
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.nav-logo:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Responsive với animation mượt mà */
+@media (max-width: 768px) {
+    .logo-symbol {
+        width: 36px;
+        height: 36px;
+        border-width: 1.5px;
+    }
+    
+    .logo-letters {
+        font-size: 20px;
+    }
+    
+    .logo-text {
+        font-size: 20px;
+    }
+}
+
+.nav-logo i {
+    margin-right: 5px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    padding: 8px 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-link i {
+    font-size: 16px;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #3498db;
+    transform: translateY(-1px);
+}
+
+.nav-link.active {
+    background-color: #3498db;
+    color: white;
+    font-weight: 500;
+}
+
+.balance-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.balance {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.balance i {
+    color: #ffd700;
+}
+
+.deposit-btn {
+    background: linear-gradient(45deg, #27ae60, #2ecc71);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    font-weight: 500;
+}
+
+.deposit-btn:hover {
+    background: linear-gradient(45deg, #219a52, #27ae60);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.deposit-options {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.amount-btn {
+    padding: 10px 20px;
+    border: 1px solid #3498db;
+    background-color: white;
+    color: #3498db;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.amount-btn:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.payment-info {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.payment-info p {
+    margin: 5px 0;
+}
