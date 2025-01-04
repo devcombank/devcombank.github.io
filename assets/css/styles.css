@@ -452,3 +452,14 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
+
+/* Ẩn section nạp tiền trong trang chính */
+section#pricing {
+    display: none;  /* Ẩn hoàn toàn phần tử */
+}
+
+/* Hoặc có thể dùng */
+section#pricing {
+    visibility: hidden;  /* Ẩn nhưng vẫn giữ không gian */
+    opacity: 0;
+}

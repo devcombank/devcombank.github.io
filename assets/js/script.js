@@ -87,3 +87,42 @@ document.querySelector('.btn-copy-code').addEventListener('click', function() {
 
 // Gọi hàm tạo QR khi trang load
 window.addEventListener('load', generateQRCode);
+
+// Xử lý hiển thị phần nạp tiền
+document.addEventListener('DOMContentLoaded', function() {
+    // Ẩn modal mặc định
+    const pricingModal = document.getElementById('pricingModal');
+    pricingModal.style.display = 'none';
+
+    // Xử lý click vào nút nạp tiền
+    document.querySelector('a[href="#pricing"]').addEventListener('click', function(e) {
+        e.preventDefault(); // Ngăn chặn hành vi mặc định của link
+        
+        // Hiển thị modal
+        pricingModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Ngăn scroll trang khi modal mở
+    });
+
+    // Xử lý đóng modal
+    const closeModal = document.querySelector('.modal-close');
+    closeModal.addEventListener('click', function() {
+        pricingModal.style.display = 'none';
+        document.body.style.overflow = ''; // Cho phép scroll lại
+    });
+
+    // Đóng modal khi click bên ngoài
+    window.addEventListener('click', function(e) {
+        if (e.target == pricingModal) {
+            pricingModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Đóng modal khi nhấn ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && pricingModal.style.display === 'flex') {
+            pricingModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
+});
