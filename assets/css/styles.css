@@ -257,30 +257,27 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    padding: 10px 0;
+    padding: 8px 0;
 }
 
 .logo a {
     display: flex;
     align-items: center;
     text-decoration: none;
-    gap: 10px;
+    gap: 12px;
 }
 
 .logo img {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     object-fit: contain;
-    filter: contrast(1.1) brightness(1.05); /* Tăng độ tương phản và độ sáng */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    filter: contrast(1.1) brightness(1.05);
 }
 
 .logo-text {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: var(--text-color);
-    letter-spacing: -0.5px;
 }
 
 /* Navigation styles */
@@ -672,5 +669,17 @@ section {
     
     .logo-text {
         font-size: 1.2rem;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .logo img {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .logo-text {
+        font-size: 1.4rem;
     }
 }
