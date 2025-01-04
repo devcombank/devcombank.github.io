@@ -1,53 +1,87 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const depositModal = document.getElementById('depositModal');
-    const openDepositBtn = document.getElementById('openDepositBtn');
-    const closeModalBtn = document.querySelector('.close-modal');
-    const amountInput = document.getElementById('customAmount');
-    const amountBtns = document.querySelectorAll('.amount-btn');
-    const copyBtns = document.querySelectorAll('.copy-btn');
+// Biến toàn cục
+let currentAmount = 0;
+
+// Mở modal nạp tiền
+function openDepositModal() {
+    document.getElementById('depositModal').style.display = 'block';
+}
+
+// Đóng modal nạp tiền
+function closeDepositModal() {
+    document.getElementById('depositModal').style.display = 'none';
+}
+
+// Format số tiền
+function formatAmount(input) {
+    // Xóa tất cả ký tự không phải số
+    let value = input.value.replace(/\D/g, '');
     
-    // Mở/đóng modal
-    openDepositBtn?.addEventListener('click', () => {
-        depositModal.classList.add('active');
+    // Format số với dấu phẩy
+    value = new Intl.NumberFormat('vi-VN').format(value);
+    
+    // Cập nhật giá trị input
+    input.value = value;
+    
+    // Enable/disable nút tạo hóa đơn
+    currentAmount = parseInt(value.replace(/\D/g, ''));
+    document.getElementById('createBill').disabled = currentAmount < 50000;
+}
+
+// Chọn số tiền nhanh
+function selectAmount(amount) {
+    document.getElementById('amount').value = new Intl.NumberFormat('vi-VN').format(amount);
+    currentAmount = amount;
+    document.getElementById('createBill').disabled = false;
+}
+
+// Hiển thị thông tin thanh toán
+function showBankInfo() {
+    // Cập nhật số tiền
+    document.getElementById('finalAmount').textContent = 
+        new Intl.NumberFormat('vi-VN').format(currentAmount) + ' VNĐ';
+    
+    // Ẩn modal nạp tiền
+    document.getElementById('depositModal').style.display = 'none';
+    
+    // Hiện thông tin thanh toán
+    document.getElementById('bankInfo').style.display = 'block';
+}
+
+// Copy text
+function copyText(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        showCopySuccess();
     });
+}
+
+// Copy số tiền
+function copyAmount() {
+    copyText(currentAmount.toString());
+}
+
+// Hiển thị thông báo copy thành công
+function showCopySuccess() {
+    const notification = document.createElement('div');
+    notification.className = 'copy-notification';
+    notification.textContent = 'Đã sao chép!';
+    document.body.appendChild(notification);
     
-    closeModalBtn?.addEventListener('click', () => {
-        depositModal.classList.remove('active');
-    });
-    
-    // Đóng khi click ngoài
-    depositModal?.addEventListener('click', (e) => {
-        if (e.target === depositModal) {
-            depositModal.classList.remove('active');
-        }
-    });
-    
-    // Xử lý nút chọn số tiền nhanh
-    amountBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const amount = btn.dataset.amount;
-            amountInput.value = formatMoney(amount);
-            amountBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        });
-    });
-    
-    // Xử lý copy thông tin
-    copyBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const textToCopy = btn.dataset.copy;
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                // Hiệu ứng khi copy thành công
-                btn.innerHTML = '<i class="fas fa-check"></i>';
-                setTimeout(() => {
-                    btn.innerHTML = '<i class="far fa-copy"></i>';
-                }, 2000);
-            });
-        });
-    });
-    
-    // Format tiền
-    function formatMoney(amount) {
-        return new Intl.NumberFormat('vi-VN').format(amount);
+    setTimeout(() => {
+        notification.remove();
+    }, 2000);
+}
+
+// Tải QR Code
+function downloadQR() {
+    const link = document.createElement('a');
+    link.href = document.getElementById('qrImage').src;
+    link.download = 'qr-code.png';
+    link.click();
+}
+
+// Đóng modal khi click ngoài
+window.onclick = function(event) {
+    if (event.target.className === 'modal') {
+        event.target.style.display = 'none';
     }
-});
+}
