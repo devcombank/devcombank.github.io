@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const createInvoiceBtn = document.getElementById('createInvoiceBtn');
     const invoiceDetails = document.getElementById('invoiceDetails');
     const suggestBtns = document.querySelectorAll('.suggest-btn');
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.nav');
 
     // Mở modal
     openDepositBtn.addEventListener('click', function() {
@@ -96,6 +98,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Copy failed:', err);
             }
         });
+    });
+
+    navToggle.addEventListener('click', () => {
+        nav.classList.toggle('nav-open');
+        navToggle.classList.toggle('nav-open');
+    });
+
+    // Đóng menu khi click ra ngoài
+    document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target) && !navToggle.contains(e.target)) {
+            nav.classList.remove('nav-open');
+            navToggle.classList.remove('nav-open');
+        }
     });
 });
 
