@@ -1,81 +1,90 @@
-// Khởi tạo các biến
-const depositBtn = document.querySelector('.deposit-btn');
-const depositModal = document.getElementById('depositModal');
-const closeModal = document.querySelector('.close-modal');
-const amountBtns = document.querySelectorAll('.amount-btn');
-const customAmount = document.getElementById('customAmount');
-const copyBtns = document.querySelectorAll('.copy-btn');
+document.addEventListener('DOMContentLoaded', function() {
+    const customAmount = document.getElementById('customAmount');
+    const createInvoiceBtn = document.getElementById('createInvoiceBtn');
+    const invoiceDetails = document.getElementById('invoiceDetails');
+    const suggestBtns = document.querySelectorAll('.suggest-btn');
+    const invoiceAmount = document.getElementById('invoiceAmount');
 
-// Mở modal
-function openDepositModal() {
-    depositModal.classList.add('show-modal');
-    document.body.style.overflow = 'hidden';
-}
-
-// Đóng modal
-function closeDepositModal() {
-    depositModal.classList.remove('show-modal');
-    document.body.style.overflow = 'auto';
-}
-
-// Event listeners
-depositBtn.addEventListener('click', openDepositModal);
-closeModal.addEventListener('click', closeDepositModal);
-
-// Đóng modal khi click bên ngoài
-window.addEventListener('click', (e) => {
-    if (e.target === depositModal) {
-        closeDepositModal();
-    }
-});
-
-// Xử lý các nút số tiền
-amountBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // Xóa active class từ tất cả các nút
-        amountBtns.forEach(b => b.classList.remove('active'));
-        // Thêm active class cho nút được chọn
-        btn.classList.add('active');
-        // Clear input số tiền tùy chọn
-        customAmount.value = '';
+    // Format số tiền khi nhập
+    customAmount.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
         
-        // Animation khi chọn
-        btn.classList.add('clicked');
-        setTimeout(() => btn.classList.remove('clicked'), 200);
-    });
-});
+        // Kiểm tra giá trị tối thiểu
+        if (value && value < 10000) {
+            value = '10000';
+        }
 
-// Xử lý copy
-copyBtns.forEach(btn => {
-    btn.addEventListener('click', async () => {
-        const textToCopy = btn.getAttribute('data-copy');
-        try {
-            await navigator.clipboard.writeText(textToCopy);
+        // Format số với dấu phẩy
+        if (value) {
+            const formattedValue = parseInt(value).toLocaleString('vi-VN');
+            e.target.value = formattedValue;
             
-            // Hiệu ứng khi copy thành công
-            const originalHTML = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-check"></i>';
-            btn.classList.add('copied');
-            
-            setTimeout(() => {
-                btn.innerHTML = originalHTML;
-                btn.classList.remove('copied');
-            }, 1500);
-        } catch (err) {
-            console.error('Copy failed', err);
+            // Enable/disable nút tạo hóa đơn
+            createInvoiceBtn.disabled = false;
+        } else {
+            createInvoiceBtn.disabled = true;
         }
     });
+
+    // Xử lý các nút gợi ý số tiền
+    suggestBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const amount = parseInt(this.dataset.amount);
+            customAmount.value = amount.toLocaleString('vi-VN');
+            createInvoiceBtn.disabled = false;
+        });
+    });
+
+    // Tạo hóa đơn
+    createInvoiceBtn.addEventListener('click', function() {
+        // Lấy số tiền đã nhập
+        const amount = customAmount.value.replace(/\D/g, '');
+        
+        // Cập nhật số tiền trong hóa đơn
+        invoiceAmount.textContent = parseInt(amount).toLocaleString('vi-VN') + ' VNĐ';
+        
+        // Cập nhật data-copy cho nút copy số tiền
+        const amountCopyBtn = invoiceAmount.nextElementSibling;
+        amountCopyBtn.setAttribute('data-copy', amount);
+
+        // Hiển thị thông tin hóa đơn
+        invoiceDetails.classList.remove('hidden');
+        invoiceDetails.classList.add('show');
+
+        // Tạo QR code (giả định)
+        generateQRCode(amount);
+    });
+
+    // Xử lý copy thông tin
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', async function() {
+            const textToCopy = this.getAttribute('data-copy');
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+                showCopySuccess(this);
+            } catch (err) {
+                console.error('Copy failed', err);
+            }
+        });
+    });
 });
 
-// Format số tiền
-customAmount.addEventListener('input', (e) => {
-    let value = e.target.value.replace(/\D/g, '');
-    if (value) {
-        // Đảm bảo là bội số của 10,000
-        value = Math.floor(value / 10000) * 10000;
-        // Set giá trị tối thiểu
-        if (value < 10000) value = 10000;
-        // Format với dấu phẩy
-        e.target.value = value.toLocaleString('vi-VN');
-    }
-});
+// Hiển thị thông báo copy thành công
+function showCopySuccess(button) {
+    const originalHTML = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-check"></i>';
+    button.classList.add('copied');
+    
+    setTimeout(() => {
+        button.innerHTML = originalHTML;
+        button.classList.remove('copied');
+    }, 1500);
+}
+
+// Tạo QR Code (giả định)
+function generateQRCode(amount) {
+    // Thêm logic tạo QR code thực tế ở đây
+    const qrCode = document.getElementById('qrCode');
+    // Giả định: Cập nhật src của QR code
+    qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=NAP_VL123456_${amount}`;
+}
