@@ -78,6 +78,7 @@ body {
     border-radius: 10px;
     color: var(--text-color);
     font-size: 16px;
+    appearance: none;
     -webkit-appearance: none;
 }
 
