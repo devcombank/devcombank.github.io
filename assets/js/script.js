@@ -187,3 +187,26 @@ document.querySelector('form').onsubmit = async function(e) {
         hideLoading();
     }
 };
+
+// Thêm animation cho modal
+function showModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.add('show');
+}
+
+function hideModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.remove('show');
+}
+
+// Xử lý form nạp tiền
+document.getElementById('payment-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    showLoading();
+    
+    // Giả lập xử lý
+    setTimeout(() => {
+        hideLoading();
+        showAlert('success', 'Tạo hóa đơn thành công!');
+    }, 1500);
+});
