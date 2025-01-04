@@ -123,59 +123,94 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="bank-info">
-                    <div class="bank-card">
-                        <img src="data:image/png;base64,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" alt="MB Bank" class="bank-logo">
-                        <div class="bank-details">
-                            <div class="detail-item">
-                                <span class="label">Ngân hàng:</span>
-                                <span class="value">MB Bank</span>
+                <!-- Phần nhập số tiền -->
+                <div class="amount-input-section">
+                    <h4>Nhập số tiền muốn nạp</h4>
+                    <div class="amount-input-wrapper">
+                        <input type="text" id="customAmount" placeholder="Ví dụ: 100,000" class="amount-input">
+                        <span class="currency">VNĐ</span>
+                    </div>
+                    <div class="amount-suggestion">
+                        <span>Gợi ý: </span>
+                        <button class="suggest-btn" data-amount="100000">100K</button>
+                        <button class="suggest-btn" data-amount="200000">200K</button>
+                        <button class="suggest-btn" data-amount="500000">500K</button>
+                    </div>
+                </div>
+
+                <!-- Nút tạo hóa đơn -->
+                <button id="createInvoiceBtn" class="create-invoice-btn" disabled>
+                    <i class="fas fa-file-invoice"></i>
+                    Tạo hóa đơn
+                </button>
+
+                <!-- Phần thông tin chuyển khoản (ẩn ban đầu) -->
+                <div id="invoiceDetails" class="invoice-details hidden">
+                    <div class="invoice-header">
+                        <i class="fas fa-receipt"></i>
+                        <h4>Thông tin chuyển khoản</h4>
+                    </div>
+                    
+                    <div class="bank-info">
+                        <div class="bank-row">
+                            <div class="bank-label">Ngân hàng:</div>
+                            <div class="bank-value">
+                                <span>MB Bank</span>
                                 <button class="copy-btn" data-copy="MB Bank">
                                     <i class="far fa-copy"></i>
                                 </button>
                             </div>
-                            <div class="detail-item">
-                                <span class="label">Số tài khoản:</span>
-                                <span class="value">0123456789</span>
+                        </div>
+                        <div class="bank-row">
+                            <div class="bank-label">Số tài khoản:</div>
+                            <div class="bank-value">
+                                <span>0123456789</span>
                                 <button class="copy-btn" data-copy="0123456789">
                                     <i class="far fa-copy"></i>
                                 </button>
                             </div>
-                            <div class="detail-item">
-                                <span class="label">Chủ tài khoản:</span>
-                                <span class="value">NGUYEN VAN A</span>
+                        </div>
+                        <div class="bank-row">
+                            <div class="bank-label">Chủ tài khoản:</div>
+                            <div class="bank-value">
+                                <span>NGUYEN VAN A</span>
                                 <button class="copy-btn" data-copy="NGUYEN VAN A">
                                     <i class="far fa-copy"></i>
                                 </button>
                             </div>
                         </div>
+                        <div class="bank-row">
+                            <div class="bank-label">Số tiền:</div>
+                            <div class="bank-value">
+                                <span id="invoiceAmount">0 VNĐ</span>
+                                <button class="copy-btn" data-copy="">
+                                    <i class="far fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="bank-row">
+                            <div class="bank-label">Nội dung CK:</div>
+                            <div class="bank-value">
+                                <span id="transferCode">NAP VL123456</span>
+                                <button class="copy-btn" data-copy="NAP VL123456">
+                                    <i class="far fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="amount-selection">
-                    <h4>Chọn số tiền nạp</h4>
-                    <div class="amount-grid">
-                        <button class="amount-btn" data-amount="50000">50K</button>
-                        <button class="amount-btn" data-amount="100000">100K</button>
-                        <button class="amount-btn" data-amount="200000">200K</button>
-                        <button class="amount-btn" data-amount="500000">500K</button>
-                        <button class="amount-btn" data-amount="1000000">1000K</button>
-                    </div>
-                    <div class="custom-amount">
-                        <input type="number" id="customAmount" placeholder="Nhập số tiền khác" min="10000" step="10000">
-                        <span class="currency">VNĐ</span>
-                    </div>
-                </div>
-
-                <div class="transfer-note">
-                    <h4>Nội dung chuyển khoản</h4>
-                    <div class="note-content">
-                        <span id="transferCode">NAP VL123456</span>
-                        <button class="copy-btn" data-copy="NAP VL123456">
-                            <i class="far fa-copy"></i>
+                    <div class="qr-section">
+                        <img id="qrCode" src="qr-placeholder.png" alt="QR Code">
+                        <button class="download-qr-btn">
+                            <i class="fas fa-download"></i>
+                            Tải QR Code
                         </button>
                     </div>
-                    <p class="warning">* Vui lòng chuyển khoản chính xác nội dung để được cộng tiền tự động</p>
+
+                    <div class="invoice-note">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Vui lòng chuyển khoản chính xác số tiền và nội dung để được cộng tiền tự động</p>
+                    </div>
                 </div>
             </div>
         </div>
