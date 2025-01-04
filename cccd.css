@@ -198,6 +198,7 @@ canvas {
     text-transform: uppercase;
     background: linear-gradient(to right, #fff, #f1c40f);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
 }
@@ -241,6 +242,7 @@ canvas {
 .nav-logo:hover .logo-text {
     background: linear-gradient(to right, #fff, #f1c40f, #e74c3c);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 0.3s ease;
 }
