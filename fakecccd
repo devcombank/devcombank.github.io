@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo CCCD miễn phí</title>
+    <link rel="stylesheet" href="cccd.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-symbol">
+                    <span class="logo-letters">VL</span>
+                </div>
+                <span class="logo-text">VietLicense<span class="logo-dot">.</span>ID</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">
+                        <i class="fas fa-id-card"></i>
+                        Tạo CCCD/CMND
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-history"></i>
+                        Lịch sử
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-question-circle"></i>
+                        Hướng dẫn
+                    </a>
+                </li>
+                <li class="nav-item balance-item">
+                    <span class="balance">
+                        <i class="fas fa-wallet"></i> Số dư: <span id="userBalance">0</span>đ
+                    </span>
+                    <button class="deposit-btn" onclick="showDepositModal()">
+                        <i class="fas fa-plus-circle"></i> Nạp tiền
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Modal nạp tiền -->
+    <div id="depositModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Nạp tiền vào tài khoản</h2>
+            <div class="deposit-options">
+                <button class="amount-btn" data-amount="50000">50,000đ</button>
+                <button class="amount-btn" data-amount="100000">100,000đ</button>
+                <button class="amount-btn" data-amount="200000">200,000đ</button>
+                <button class="amount-btn" data-amount="500000">500,000đ</button>
+            </div>
+            <div class="payment-info">
+                <p>Vui lòng chuyển khoản theo thông tin:</p>
+                <p>Ngân hàng: BIDV</p>
+                <p>STK: 123456789</p>
+                <p>Chủ TK: NGUYEN VAN A</p>
+                <p>Nội dung: NAP [số điện thoại]</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title">Công Cụ Tạo CCCD</h1>
+        
+        <div class="notice-box">
+            <h3>Lưu ý quan trọng:</h3>
+            <ul>
+                <li>Hoàn tiền nếu khách hàng tạo lỗi, chữ dài,...</li>
+                <li>Vui lòng nhập đầy đủ thông tin theo mẫu hướng dẫn</li>
+                <li>Tên và địa chỉ nên viết HOA để đảm bảo định dạng chuẩn</li>
+                <li>Số CCCD phải đúng 12 chữ số</li>
+                <li>Định dạng ngày sinh: DD/MM/YYYY (VD: 01/01/2000)</li>
+                <li>Kiểm tra kỹ thông tin trước khi tải ảnh</li>
+            </ul>
+        </div>
+
+        <div class="input-section">
+            <div class="input-group">
+                <label>Họ và tên:</label>
+                <input type="text" class="textInput" data-index="1" placeholder="VD: NGUYỄN VĂN A">
+            </div>
+            <div class="input-group">
+                <label>Thường trú:</label>
+                <input type="text" class="textInput" data-index="2" placeholder="VD: Số 123 Đường ABC, Phường XYZ, Quận 123, TP.HCM">
+            </div>
+            <div class="input-group">
+                <label>Số CCCD:</label>
+                <input type="text" class="textInput" data-index="3" placeholder="VD: 079202000123">
+            </div>
+            <div class="input-group">
+                <label>Ngày sinh:</label>
+                <input type="text" class="textInput" data-index="4" placeholder="VD: 01/01/2000">
+            </div>
+            <div class="input-group">
+                <label>Giới tính:</label>
+                <input type="text" class="textInput" data-index="5" placeholder="VD: Nam/Nữ">
+            </div>
+            <div class="input-group">
+                <label>Quốc tịch:</label>
+                <input type="text" class="textInput" data-index="6" placeholder="VD: Việt Nam">
+            </div>
+            <div class="input-group">
+                <label>Quê quán:</label>
+                <input type="text" class="textInput" data-index="7" placeholder="VD: Xã ABC, Huyện XYZ, Tỉnh 123">
+            </div>
+            <div class="input-group">
+                <label>Dân tộc:</label>
+                <input type="text" class="textInput" data-index="8" placeholder="VD: Kinh">
+            </div>
+            <div class="input-group">
+                <label>Tôn giáo:</label>
+                <input type="text" class="textInput" data-index="9" placeholder="VD: Không/Phật giáo/Công giáo">
+            </div>
+            <div class="input-group">
+                <label>Chọn ảnh thẻ:</label>
+                <input type="file" accept="image/*" id="imageInput" class="fileInput">
+            </div>
+            <div class="input-group">
+                <label>Số CMND:</label>
+                <input type="text" class="textInput" data-index="10" placeholder="Nhập text dòng 6">
+            </div>
+            <div class="input-group">
+                <label>
+                    Ngày cấp:</label>
+                <input type="text" class="textInput" data-index="11" placeholder="Nhập text dòng 7">
+            </div>
+            <div class="input-group">
+                <label>Ngày hết hạn:</label>
+                <input type="text" class="textInput" data-index="12" placeholder="Nhập text dòng 8">
+            </div>
+            <div class="buttons">
+                <button id="downloadBtn">Tải ảnh</button>
+            </div>
+        </div>
+        <div class="preview-section">
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
