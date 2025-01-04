@@ -257,22 +257,30 @@ body {
 .logo {
     display: flex;
     align-items: center;
+    padding: 10px 0;
 }
 
 .logo a {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: inherit;
+    gap: 10px;
 }
 
 .logo img {
-    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: contrast(1.1) brightness(1.05); /* Tăng độ tương phản và độ sáng */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .logo-text {
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    letter-spacing: -0.5px;
 }
 
 /* Navigation styles */
@@ -653,4 +661,16 @@ section {
 .form-control:focus {
     border-color: #007bff;
     outline: none;
+}
+
+/* Responsive logo */
+@media (max-width: 768px) {
+    .logo img {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .logo-text {
+        font-size: 1.2rem;
+    }
 }
