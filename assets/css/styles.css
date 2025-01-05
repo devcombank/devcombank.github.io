@@ -806,3 +806,118 @@ section#pricing {
         background: #000;
     }
 }
+
+/* Balance Display Styles */
+.balance-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+}
+
+.balance-icon {
+    color: var(--primary-color);
+}
+
+.balance-amount {
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.balance-currency {
+    color: var(--secondary-color);
+    font-size: 0.9em;
+}
+
+/* Hover effect */
+.balance-display:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .balance-display {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .balance-display:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .balance-amount {
+        color: white;
+    }
+
+    .balance-currency {
+        color: rgba(255, 255, 255, 0.7);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .balance-display {
+        padding: 6px 12px;
+        margin-right: 10px;
+    }
+
+    .balance-currency {
+        display: none; /* Ẩn đơn vị tiền trên mobile */
+    }
+}
+
+/* Balance Animation */
+.balance-updated {
+    animation: balanceUpdate 1s ease;
+}
+
+@keyframes balanceUpdate {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+        color: var(--primary-color);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Notification Styles */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideIn 0.3s ease;
+    z-index: 1000;
+}
+
+.notification.success {
+    background: #4CAF50;
+    color: white;
+}
+
+.notification.error {
+    background: #f44336;
+    color: white;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

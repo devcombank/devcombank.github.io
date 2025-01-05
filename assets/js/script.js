@@ -248,3 +248,27 @@ document.querySelectorAll('.copy-btn').forEach(button => {
         });
     });
 });
+
+// Cập nhật số dư
+function updateBalance(amount) {
+    const balanceElement = document.querySelector('.balance-amount');
+    if (balanceElement) {
+        // Format số tiền với dấu chấm phân cách
+        const formattedAmount = new Intl.NumberFormat('vi-VN').format(amount);
+        balanceElement.textContent = formattedAmount;
+    }
+}
+
+// Ví dụ cập nhật số dư khi load trang
+document.addEventListener('DOMContentLoaded', function() {
+    // Giả lập lấy số dư từ API
+    const currentBalance = 50000; // Thay bằng số dư thực từ API
+    updateBalance(currentBalance);
+});
+
+// Cập nhật số dư sau khi nạp tiền thành công
+function onPaymentSuccess(amount) {
+    const currentBalance = parseInt(document.querySelector('.balance-amount').textContent.replace(/\./g, ''));
+    const newBalance = currentBalance + amount;
+    updateBalance(newBalance);
+}
