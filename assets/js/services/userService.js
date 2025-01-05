@@ -1,79 +1,89 @@
 class UserService {
     constructor() {
-        this.API_URL = '/api';
-        console.log("UserService initialized");
+        this.API_URL = 'https://devcombank.github.io/api';
+        this.defaultUser = {
+            username: null,
+            email: null,
+            stats: {
+                balance: 0,
+                billsCreated: 0
+            },
+            membership: {
+                type: 'Free',
+                daysLeft: 0
+            }
+        };
     }
 
     async checkInitialState() {
-        console.log("Checking initial state...");
-        const token = localStorage.getItem('auth_token');
-        const userData = localStorage.getItem('user_data');
-
-        if (!token || !userData) {
-            console.log("No auth data found");
-            return {
-                isAuthenticated: false,
-                balance: 0,
-                showAuthButtons: true
-            };
-        }
-
         try {
-            const user = JSON.parse(userData);
-            console.log("User data found:", user);
+            const token = localStorage.getItem('auth_token');
+            if (!token) {
+                return {
+                    isAuthenticated: false,
+                    balance: 0,
+                    userData: this.defaultUser
+                };
+            }
+
+            const userData = await this.getCurrentUser();
             return {
                 isAuthenticated: true,
-                balance: user.stats?.balance || 0,
-                showAuthButtons: false
+                balance: userData.stats.balance,
+                userData: userData
             };
         } catch (error) {
-            console.error("Error parsing user data:", error);
+            console.error('Initial state check failed:', error);
             return {
                 isAuthenticated: false,
                 balance: 0,
-                showAuthButtons: true
+                userData: this.defaultUser
             };
         }
     }
 
-    isLoggedIn() {
-        const isLoggedIn = !!localStorage.getItem('auth_token');
-        console.log("Checking login status:", isLoggedIn);
-        return isLoggedIn;
+    updateNavigation(state) {
+        const balanceDisplay = document.querySelector('.balance-amount');
+        if (balanceDisplay) {
+            balanceDisplay.textContent = new Intl.NumberFormat('vi-VN').format(state.balance);
+        }
     }
 
-    async getCurrentUser() {
-        console.log("Getting current user...");
-        const userData = localStorage.getItem('user_data');
-        
-        if (!userData) {
-            console.log("No user data found");
-            throw new Error('Không tìm thấy thông tin người dùng');
-        }
-
+    async login(credentials) {
         try {
-            return JSON.parse(userData);
+            // Giả lập API call
+            const mockUser = {
+                ...this.defaultUser,
+                username: credentials.email.split('@')[0],
+                email: credentials.email,
+                stats: {
+                    balance: 0,
+                    billsCreated: 0
+                }
+            };
+
+            localStorage.setItem('auth_token', 'mock_token');
+            localStorage.setItem('user_data', JSON.stringify(mockUser));
+
+            this.dispatchAuthEvent('login');
+            return mockUser;
         } catch (error) {
-            console.error("Error parsing user data:", error);
-            throw error;
+            throw new Error('Đăng nhập thất bại');
         }
+    }
+
+    logout() {
+        localStorage.removeItem('auth_token');
+        localStorage.removeItem('user_data');
+        this.dispatchAuthEvent('logout');
+        window.location.href = '/';
     }
 
     dispatchAuthEvent(type) {
-        console.log("Dispatching auth event:", type);
         document.dispatchEvent(new CustomEvent('authStateChange', {
             detail: { type }
         }));
     }
-
-    dispatchBalanceUpdate(balance) {
-        console.log("Dispatching balance update:", balance);
-        document.dispatchEvent(new CustomEvent('balanceUpdate', {
-            detail: { balance }
-        }));
-    }
 }
 
-// Export single instance
-const userService = new UserService();
-export default userService; 
+export default new UserService(); 

@@ -7,63 +7,43 @@ class App {
 
     async init() {
         try {
-            console.log("Initializing app...");
-            await this.checkAuthState();
-            this.initializeEventListeners();
-        } catch (error) {
-            console.error("Initialization error:", error);
-        }
-    }
-
-    async checkAuthState() {
-        try {
             const state = await userService.checkInitialState();
-            console.log("Auth state:", state);
-            this.updateUI(state);
+            userService.updateNavigation(state);
+            
+            // Khởi tạo event listeners
+            this.initializeEventListeners();
+            
+            // Kiểm tra path hiện tại
+            if (window.location.pathname === '/profile.html' && !state.isAuthenticated) {
+                window.location.href = '/';
+            }
         } catch (error) {
-            console.error("Auth state check error:", error);
-        }
-    }
-
-    updateUI(state) {
-        const balanceElement = document.querySelector('.balance-amount');
-        const profileLink = document.querySelector('.profile-link');
-
-        if (balanceElement) {
-            balanceElement.textContent = new Intl.NumberFormat('vi-VN').format(state.balance);
-        }
-
-        if (profileLink) {
-            profileLink.href = state.isAuthenticated ? 'profile.html' : 'profile.html#login';
+            console.error('App initialization failed:', error);
         }
     }
 
     initializeEventListeners() {
-        // Lắng nghe sự kiện cập nhật số dư
-        document.addEventListener('balanceUpdate', (e) => {
-            const balanceElement = document.querySelector('.balance-amount');
-            if (balanceElement) {
-                balanceElement.textContent = new Intl.NumberFormat('vi-VN').format(e.detail.balance);
-            }
+        // Lắng nghe sự kiện auth state change
+        document.addEventListener('authStateChange', async (e) => {
+            const state = await userService.checkInitialState();
+            userService.updateNavigation(state);
         });
 
-        // Lắng nghe sự kiện đăng nhập/đăng xuất
-        document.addEventListener('authStateChange', async () => {
-            await this.checkAuthState();
-        });
+        // Xử lý click vào nút tài khoản
+        const profileLink = document.querySelector('.profile-link');
+        if (profileLink) {
+            profileLink.addEventListener('click', (e) => {
+                const state = userService.isLoggedIn();
+                if (!state) {
+                    e.preventDefault();
+                    window.location.href = '/profile.html#login';
+                }
+            });
+        }
     }
 }
 
-// Khởi tạo ứng dụng
+// Khởi tạo app khi DOM đã sẵn sàng
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOM loaded, initializing app...");
     new App();
-}); 
-document.addEventListener('DOMContentLoaded', function() {
-    // Khởi tạo các class quản lý
-    const userAuth = new UserAuth();
-    const balanceManager = new BalanceManager(userAuth);
-
-    // Kiểm tra trạng thái đăng nhập
-    userAuth.checkAuthStatus();
 }); 
