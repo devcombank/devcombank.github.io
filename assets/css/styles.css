@@ -745,3 +745,63 @@ section#pricing {
     font-size: 3rem;
     color: white;
 }
+
+/* Profile Menu Styles */
+.profile-menu {
+    position: relative;
+    margin-left: 15px;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 15px;
+    border-radius: 25px;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.profile-link:hover {
+    background: #000;
+    color: white;
+}
+
+.profile-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+}
+
+.profile-name {
+    font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .profile-name {
+        display: none; /* Ẩn text trên mobile */
+    }
+
+    .profile-link {
+        padding: 5px;
+    }
+
+    .profile-menu {
+        margin-left: 10px;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .profile-link {
+        background: #333;
+        color: white;
+    }
+
+    .profile-link:hover {
+        background: #000;
+    }
+}

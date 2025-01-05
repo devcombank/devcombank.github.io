@@ -629,4 +629,217 @@ body {
     #qrcode-paypal {
         background: white;
     }
+}
+
+/* LIO Bank specific styles */
+.bank-header.lio {
+    background: linear-gradient(135deg, #000000, #1a1a1a);
+    padding: 20px;
+    border-radius: 12px;
+    margin: -1rem -1rem 1.5rem -1rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.bank-header.lio img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+.bank-header.lio h3 {
+    color: white;
+    font-size: 1.4rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Card style cho LIO Bank */
+.bank-info-card:has(.lio) {
+    border: none;
+    background: white;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.bank-info-card:has(.lio):hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Detail rows cho LIO Bank */
+.bank-info-card:has(.lio) .detail-row {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.bank-info-card:has(.lio) .detail-row:hover {
+    border-color: #000000;
+    background: white;
+}
+
+/* Copy buttons cho LIO Bank */
+.bank-info-card:has(.lio) .copy-btn {
+    background: #f5f5f5;
+    border: none;
+    color: #000000;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bank-info-card:has(.lio) .copy-btn:hover {
+    background: #000000;
+    color: white;
+    transform: scale(1.1);
+}
+
+.bank-info-card:has(.lio) .copy-btn.success {
+    background: #4caf50;
+    color: white;
+}
+
+/* QR code cho LIO Bank */
+#qrcode-lio {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid #000000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* Download QR button cho LIO Bank */
+.bank-info-card:has(.lio) .download-qr {
+    background: #000000;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.bank-info-card:has(.lio) .download-qr:hover {
+    background: #1a1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.bank-info-card:has(.lio) .download-qr:active {
+    transform: translateY(1px);
+}
+
+.bank-info-card:has(.lio) .download-qr i {
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .bank-info-card:has(.lio) {
+        background: #1a1a1a;
+    }
+    
+    .bank-info-card:has(.lio) .detail-row {
+        background: #2d2d2d;
+        border-color: #404040;
+    }
+    
+    .bank-info-card:has(.lio) .detail-row:hover {
+        background: #333;
+        border-color: #000000;
+    }
+    
+    .bank-info-card:has(.lio) .copy-btn {
+        background: #333;
+        color: #fff;
+    }
+    
+    #qrcode-lio {
+        background: white;
+    }
+}
+
+/* Back to Home Button Styles */
+.back-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: #000000;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.back-button i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+    background: #1a1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.back-button:hover i {
+    transform: translateX(-5px);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .back-home {
+        top: 10px;
+        left: 10px;
+    }
+
+    .back-button {
+        padding: 10px 15px;
+    }
+
+    .back-button span {
+        display: none; /* Ẩn text trên mobile */
+    }
+
+    .back-button i {
+        font-size: 1.2rem;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .back-button {
+        background: #1a1a1a;
+        color: white;
+    }
+
+    .back-button:hover {
+        background: #333;
+    }
 } 
