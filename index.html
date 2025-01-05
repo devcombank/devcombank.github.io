@@ -3,164 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VL.ID - Dịch Vụ Tạo Bill Chuyên Nghiệp</title>
-    <!-- Font Awesome -->
+    <title>VietLicense.ID</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
-
-    <!-- Thêm vào phần head -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <div class="logo">
-                    <a href="/" class="nav-logo">
-                        <span class="logo-letters">VL</span>
-                        <span class="logo-dot">.</span>
-                        <span class="logo-text">ID</span>
+        <nav class="nav">
+            <a href="/" class="nav-logo">
+                <span class="logo-letters">VL</span>
+                <span class="logo-dot">.</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="/">Trang Chủ</a></li>
+                <li><a href="#services">Dịch Vụ</a></li>
+                <li><a href="pricing.html">Nạp tiền</a></li>
+                <li><a href="#contact">Liên Hệ</a></li>
+                <li class="balance">
+                    <i class="fas fa-wallet"></i>
+                    <span class="balance-amount">0</span>
+                    <span class="balance-currency">VNĐ</span>
+                </li>
+                <li>
+                    <a href="login.html" class="profile-button">
+                        <i class="fas fa-user"></i>
+                        <span>Tài khoản</span>
                     </a>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="/">Trang Chủ</a></li>
-                    <li><a href="#services">Dịch Vụ</a></li>
-                    <li><a href="pricing.html">Nạp tiền</a></li>
-                    <li><a href="#contact">Liên Hệ</a></li>
-                    <li class="balance">
-                        <i class="fas fa-wallet"></i>
-                        <span class="balance-amount">0</span>
-                        <span class="balance-currency">VNĐ</span>
-                    </li>
-                    <li>
-                        <a href="profile.html" class="profile-button">
-                            <i class="fas fa-user"></i>
-                            <span class="username-display">Tài khoản</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+                </li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>VL.ID - Dịch Vụ Tạo Bill Chuyên Nghiệp</h1>
-                    <p class="hero-subtitle">Tạo bill chuyển khoản uy tín - nhanh chóng - bảo mật</p>
-                    <div class="hero-buttons">
-                        <a href="#services" class="btn btn-primary">Xem Dịch Vụ</a>
-                        <a href="#pricing" class="btn btn-secondary">Bắt Đầu Ngay</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="features">
-            <div class="container">
-                <h2 class="section-title">Tại Sao Chọn Chúng Tôi?</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>An Toàn & Bảo Mật</h3>
-                        <p>Thông tin khách hàng được mã hóa và bảo vệ tuyệt đối</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-bolt"></i>
-                        <h3>Tốc Độ Nhanh</h3>
-                        <p>Tạo bill chỉ trong vài giây, không cần chờ đợi</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-clock"></i>
-                        <h3>Hoạt Động 24/7</h3>
-                        <p>Hệ thống tự động hoạt động liên tục không ngừng nghỉ</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-headset"></i>
-                        <h3>Hỗ Trợ Tận Tình</h3>
-                        <p>Đội ngũ hỗ trợ chuyên nghiệp, sẵn sàng giúp đỡ</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="services">
-            <div class="container">
-                <h2 class="section-title">Dịch Vụ Tạo Bill Chuyển Khoản</h2>
-                <p class="section-subtitle">Hỗ trợ tất cả các ngân hàng phổ biến tại Việt Nam</p>
-                
-                <div class="banks-grid">
-                    <!-- Các ngân hàng phổ biến -->
-                    <div class="bank-card">
-                        <img src="assets/images/banks/mbbank.png" alt="MB Bank">
-                        <h3>MB Bank</h3>
-                        <p>Military Commercial Joint Stock Bank</p>
-                        <button class="btn-create">Tạo Bill</button>
-                    </div>
-
-                    <div class="bank-card">
-                        <img src="assets/images/banks/techcombank.png" alt="Techcombank">
-                        <h3>Techcombank</h3>
-                        <p>Vietnam Technological and Commercial Joint Stock Bank</p>
-                        <button class="btn-create">Tạo Bill</button>
-                    </div>
-
-                    <div class="bank-card">
-                        <img src="assets/images/banks/vietcombank.png" alt="Vietcombank">
-                        <h3>Vietcombank</h3>
-                        <p>Joint Stock Commercial Bank for Foreign Trade of Vietnam</p>
-                        <button class="btn-create">Tạo Bill</button>
-                    </div>
-
-                    <div class="bank-card">
-                        <img src="assets/images/banks/tpbank.png" alt="TPBank">
-                        <h3>TPBank</h3>
-                        <p>Tiền Phong Commercial Joint Stock Bank</p>
-                        <button class="btn-create">Tạo Bill</button>
-                    </div>
-
-                    <div class="bank-card">
-                        <img src="assets/images/banks/acb.png" alt="ACB">
-                        <h3>ACB</h3>
-                        <p>Asia Commercial Joint Stock Bank</p>
-                        <button class="btn-create">Tạo Bill</button>
-                    </div>
-
-                    <div class="bank-card">
-                        <img src="assets/images/banks/bidv.png" alt="BIDV">
-                        <h3>BIDV</h3>
-                        <p>Bank for Investment and Development of Vietnam</p>
-                        <button class="btn-create">Tạo Bill</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="contact-info">
-            <h3>VietLicense.ID</h3>
-            <p>Dịch vụ tạo bill chuyển khoản chuyên nghiệp</p>
-            <div class="contact-details">
-                <p><i class="fas fa-envelope"></i> Email: admin@vvl6.com</p>
-                <p><i class="fab fa-telegram"></i> Telegram: @alouab</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Custom JS -->
-    <script src="assets/js/script.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
 </body>
 </html>
 
