@@ -13,339 +13,154 @@ body {
 
 /* Container */
 .auth-container {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.auth-section {
+    max-width: 460px;
+    margin: 0 auto;
 }
 
 .auth-box {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 460px;
-    padding: 40px;
-    transition: transform 0.3s ease;
-    animation: fadeIn 0.5s ease;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 32px;
 }
 
-.auth-box:hover {
-    transform: translateY(-5px);
-}
-
-/* Logo & Header */
 .auth-header {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 32px;
 }
 
-.logo-link {
-    text-decoration: none;
-    display: inline-block;
+.auth-header h2 {
+    font-size: 24px;
+    color: #111827;
+    margin-bottom: 8px;
 }
 
-.logo {
-    font-size: 36px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-}
-
-.logo-letters {
-    color: #333;
-}
-
-.logo-dot {
-    color: #667eea;
-}
-
-.logo-text {
-    color: #333;
-}
-
-.auth-subtitle {
-    color: #666;
-    font-size: 14px;
-}
-
-/* Tabs */
-.auth-tabs {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 30px;
-    padding: 5px;
-    background: #f5f5f5;
-    border-radius: 12px;
-}
-
-.tab-btn {
-    flex: 1;
-    padding: 12px;
-    border: none;
-    background: none;
-    border-radius: 8px;
+.auth-header p {
+    color: #6B7280;
     font-size: 15px;
-    font-weight: 600;
-    color: #666;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
 }
 
-.tab-btn.active {
-    background: #667eea;
-    color: white;
-}
-
-.tab-btn i {
-    font-size: 14px;
-}
-
-/* Form Groups */
 .form-group {
     margin-bottom: 20px;
 }
 
-.input-icon {
+.form-group label {
+    display: block;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.input-group {
     position: relative;
-    display: flex;
-    align-items: center;
 }
 
-.input-icon i {
+.input-group i {
     position: absolute;
-    left: 15px;
-    color: #666;
-    transition: color 0.3s ease;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6B7280;
 }
 
-.input-icon input {
+.input-group input {
     width: 100%;
-    padding: 15px 45px;
-    border: 2px solid #eee;
-    border-radius: 12px;
-    font-size: 15px;
-    transition: all 0.3s ease;
-    background: #f8f9fa;
+    padding: 12px 16px 12px 40px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.2s;
 }
 
-.input-icon input:focus {
-    border-color: #667eea;
-    background: white;
+.input-group input:focus {
+    border-color: #4F46E5;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
-.input-icon input:focus + i {
-    color: #667eea;
-}
-
-/* Password Toggle */
 .toggle-password {
     position: absolute;
-    right: 15px;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     background: none;
     border: none;
-    color: #666;
+    color: #6B7280;
     cursor: pointer;
-    padding: 5px;
 }
 
-/* Remember Me & Forgot Password */
 .form-options {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 24px;
 }
 
 .remember-me {
     display: flex;
     align-items: center;
     gap: 8px;
-    cursor: pointer;
-}
-
-.remember-me input[type="checkbox"] {
-    display: none;
-}
-
-.checkmark {
-    width: 18px;
-    height: 18px;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    display: inline-block;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.remember-me input[type="checkbox"]:checked + .checkmark {
-    background: #667eea;
-    border-color: #667eea;
-}
-
-.remember-me input[type="checkbox"]:checked + .checkmark:after {
-    content: '\f00c';
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    color: white;
-    font-size: 12px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    color: #374151;
+    font-size: 14px;
 }
 
 .forgot-password {
-    color: #667eea;
-    text-decoration: none;
+    color: #4F46E5;
     font-size: 14px;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    text-decoration: none;
 }
 
-.forgot-password:hover {
-    color: #764ba2;
-}
-
-/* Submit Button */
 .auth-button {
     width: 100%;
-    padding: 15px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    padding: 12px;
+    background: #4F46E5;
+    color: #fff;
     border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    border-radius: 8px;
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
 .auth-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-}
-
-.auth-button i {
-    font-size: 14px;
-    transition: transform 0.3s ease;
-}
-
-.auth-button:hover i {
-    transform: translateX(5px);
-}
-
-/* Notifications */
-.notification {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 15px 25px;
-    border-radius: 12px;
-    background: white;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    animation: slideIn 0.3s ease;
-    z-index: 1000;
-}
-
-.notification.success {
-    background: #4CAF50;
-    color: white;
-}
-
-.notification.error {
-    background: #f44336;
-    color: white;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
-    .auth-box {
-        padding: 25px;
-    }
-
-    .logo {
-        font-size: 30px;
-    }
-
-    .auth-button {
-        padding: 12px;
-    }
-
-    .input-icon input {
-        padding: 12px 40px;
-    }
-
-    .form-options {
-        flex-direction: column;
-        gap: 15px;
-        align-items: flex-start;
-    }
-}
-
-.auth-title {
-    text-align: center;
-    color: #333;
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 30px;
+    background: #4338CA;
 }
 
 .auth-footer {
+    margin-top: 24px;
     text-align: center;
-    margin-top: 25px;
-    padding-top: 25px;
-    border-top: 1px solid #eee;
-}
-
-.auth-footer p {
-    color: #666;
+    color: #6B7280;
     font-size: 14px;
 }
 
-.switch-auth {
-    color: #667eea;
+.auth-footer a {
+    color: #4F46E5;
     text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
+    font-weight: 500;
 }
 
-.switch-auth:hover {
-    color: #764ba2;
-    text-decoration: underline;
+.hidden {
+    display: none;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+/* Responsive */
+@media (max-width: 640px) {
+    .auth-box {
+        padding: 24px;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    .auth-header h2 {
+        font-size: 20px;
     }
 } 

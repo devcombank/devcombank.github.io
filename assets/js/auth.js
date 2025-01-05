@@ -6,16 +6,14 @@ class AuthManager {
     }
 
     initializeEventListeners() {
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
+        // Form submissions
+        document.getElementById('loginForm')?.addEventListener('submit', (e) => this.handleLogin(e));
+        document.getElementById('registerForm')?.addEventListener('submit', (e) => this.handleRegister(e));
 
-        if (loginForm) {
-            loginForm.addEventListener('submit', (e) => this.handleLogin(e));
-        }
-
-        if (registerForm) {
-            registerForm.addEventListener('submit', (e) => this.handleRegister(e));
-        }
+        // Password visibility toggles
+        document.querySelectorAll('.toggle-password').forEach(button => {
+            button.addEventListener('click', (e) => this.togglePasswordVisibility(e));
+        });
     }
 
     async handleLogin(e) {
@@ -25,9 +23,12 @@ class AuthManager {
         const rememberMe = document.getElementById('rememberMe')?.checked;
 
         try {
-            const response = await userService.login({ email, password, rememberMe });
+            await userService.login({ email, password, rememberMe });
             this.showSuccess('Đăng nhập thành công!');
-            window.location.href = '/profile.html';
+            // Chuyển về trang chủ sau khi đăng nhập
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 1000);
         } catch (error) {
             this.showError(error.message);
         }
@@ -46,16 +47,33 @@ class AuthManager {
         }
 
         try {
-            const response = await userService.register({ email, username, password });
-            this.showSuccess('Đăng ký thành công! Vui lòng đăng nhập.');
-            window.location.href = '/login.html';
+            await userService.register({ email, username, password });
+            this.showSuccess('Đăng ký thành công! Đang chuyển hướng...');
+            // Tự động đăng nhập và chuyển về trang chủ
+            setTimeout(async () => {
+                await userService.login({ email, password });
+                window.location.href = '/';
+            }, 1000);
         } catch (error) {
             this.showError(error.message);
         }
     }
 
+    togglePasswordVisibility(e) {
+        const button = e.currentTarget;
+        const input = button.parentElement.querySelector('input');
+        const icon = button.querySelector('i');
+
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.replace('fa-eye', 'fa-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.classList.replace('fa-eye-slash', 'fa-eye');
+        }
+    }
+
     showSuccess(message) {
-        // Hiển thị thông báo thành công
         const notification = document.createElement('div');
         notification.className = 'notification success';
         notification.textContent = message;
@@ -64,7 +82,6 @@ class AuthManager {
     }
 
     showError(message) {
-        // Hiển thị thông báo lỗi
         const notification = document.createElement('div');
         notification.className = 'notification error';
         notification.textContent = message;
@@ -73,7 +90,21 @@ class AuthManager {
     }
 }
 
-// Khởi tạo Auth Manager
+// Switch between login and register forms
+window.switchAuthMode = function(mode) {
+    const loginSection = document.getElementById('loginSection');
+    const registerSection = document.getElementById('registerSection');
+
+    if (mode === 'login') {
+        loginSection.classList.remove('hidden');
+        registerSection.classList.add('hidden');
+    } else {
+        loginSection.classList.add('hidden');
+        registerSection.classList.remove('hidden');
+    }
+}
+
+// Initialize Auth Manager
 document.addEventListener('DOMContentLoaded', () => {
     new AuthManager();
 }); 

@@ -7,43 +7,62 @@ class App {
 
     async init() {
         try {
-            const state = await userService.checkInitialState();
-            userService.updateNavigation(state);
-            
-            // Khởi tạo event listeners
-            this.initializeEventListeners();
-            
-            // Kiểm tra path hiện tại
-            if (window.location.pathname === '/profile.html' && !state.isAuthenticated) {
-                window.location.href = '/';
+            if (userService.isLoggedIn()) {
+                const userData = await userService.getCurrentUser();
+                this.updateNavigation(userData);
             }
+            this.initializeEventListeners();
         } catch (error) {
             console.error('App initialization failed:', error);
         }
     }
 
+    updateNavigation(userData) {
+        const profileButton = document.querySelector('.profile-button');
+        if (profileButton) {
+            // Cập nhật trạng thái đăng nhập
+            profileButton.classList.add('authenticated');
+            
+            // Cập nhật tên người dùng
+            const span = profileButton.querySelector('span');
+            if (span) {
+                span.textContent = userData.username;
+            }
+
+            // Thêm hiệu ứng highlight
+            profileButton.classList.add('highlight');
+            setTimeout(() => {
+                profileButton.classList.remove('highlight');
+            }, 2000);
+        }
+
+        // Cập nhật số dư
+        const balanceAmount = document.querySelector('.balance-amount');
+        if (balanceAmount) {
+            balanceAmount.textContent = new Intl.NumberFormat('vi-VN').format(userData.stats.balance);
+        }
+    }
+
     initializeEventListeners() {
-        // Lắng nghe sự kiện auth state change
-        document.addEventListener('authStateChange', async (e) => {
-            const state = await userService.checkInitialState();
-            userService.updateNavigation(state);
+        // Lắng nghe sự kiện cập nhật số dư
+        document.addEventListener('balanceUpdate', (e) => {
+            const balanceAmount = document.querySelector('.balance-amount');
+            if (balanceAmount) {
+                balanceAmount.textContent = new Intl.NumberFormat('vi-VN').format(e.detail.balance);
+            }
         });
 
-        // Xử lý click vào nút tài khoản
-        const profileLink = document.querySelector('.profile-link');
-        if (profileLink) {
-            profileLink.addEventListener('click', (e) => {
-                const state = userService.isLoggedIn();
-                if (!state) {
-                    e.preventDefault();
-                    window.location.href = '/profile.html#login';
-                }
-            });
-        }
+        // Lắng nghe sự kiện đăng nhập/đăng xuất
+        document.addEventListener('authStateChange', async (e) => {
+            if (e.detail.type === 'login' || e.detail.type === 'register') {
+                const userData = await userService.getCurrentUser();
+                this.updateNavigation(userData);
+            }
+        });
     }
 }
 
-// Khởi tạo app khi DOM đã sẵn sàng
+// Khởi tạo app
 document.addEventListener('DOMContentLoaded', () => {
     new App();
 }); 
