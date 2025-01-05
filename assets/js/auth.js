@@ -1,78 +1,79 @@
-// Quản lý thông tin người dùng và xác thực
-class UserAuth {
+import userService from './services/userService.js';
+
+class AuthManager {
     constructor() {
-        this.currentUser = null;
-        this.isAuthenticated = false;
+        this.initializeEventListeners();
     }
 
-    // Kiểm tra trạng thái đăng nhập
-    checkAuthStatus() {
-        const token = localStorage.getItem('auth_token');
-        if (token) {
-            this.fetchUserData(token);
-        } else {
-            this.redirectToLogin();
+    initializeEventListeners() {
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+
+        if (loginForm) {
+            loginForm.addEventListener('submit', (e) => this.handleLogin(e));
+        }
+
+        if (registerForm) {
+            registerForm.addEventListener('submit', (e) => this.handleRegister(e));
         }
     }
 
-    // Lấy thông tin người dùng từ API
-    async fetchUserData(token) {
+    async handleLogin(e) {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        const rememberMe = document.getElementById('rememberMe')?.checked;
+
         try {
-            const response = await fetch('api/user/info', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            
-            if (response.ok) {
-                const userData = await response.json();
-                this.currentUser = userData;
-                this.isAuthenticated = true;
-                this.updateUIWithUserData();
-            } else {
-                this.handleAuthError();
-            }
+            const response = await userService.login({ email, password, rememberMe });
+            this.showSuccess('Đăng nhập thành công!');
+            window.location.href = '/profile.html';
         } catch (error) {
-            console.error('Lỗi khi lấy thông tin người dùng:', error);
-            this.handleAuthError();
+            this.showError(error.message);
         }
     }
 
-    // Cập nhật UI với thông tin người dùng
-    updateUIWithUserData() {
-        if (this.currentUser) {
-            // Cập nhật số dư
-            this.updateBalance(this.currentUser.balance);
-            
-            // Cập nhật thông tin profile
-            this.updateProfileInfo();
+    async handleRegister(e) {
+        e.preventDefault();
+        const email = document.getElementById('registerEmail').value;
+        const username = document.getElementById('registerUsername').value;
+        const password = document.getElementById('registerPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (password !== confirmPassword) {
+            this.showError('Mật khẩu xác nhận không khớp');
+            return;
+        }
+
+        try {
+            const response = await userService.register({ email, username, password });
+            this.showSuccess('Đăng ký thành công! Vui lòng đăng nhập.');
+            window.location.href = '/login.html';
+        } catch (error) {
+            this.showError(error.message);
         }
     }
 
-    // Cập nhật hiển thị số dư
-    updateBalance(amount) {
-        const balanceElement = document.querySelector('.balance-amount');
-        if (balanceElement) {
-            const formattedAmount = new Intl.NumberFormat('vi-VN').format(amount);
-            balanceElement.textContent = formattedAmount;
-            
-            // Animation khi số dư thay đổi
-            balanceElement.classList.add('balance-updated');
-            setTimeout(() => {
-                balanceElement.classList.remove('balance-updated');
-            }, 1000);
-        }
+    showSuccess(message) {
+        // Hiển thị thông báo thành công
+        const notification = document.createElement('div');
+        notification.className = 'notification success';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 3000);
     }
 
-    // Xử lý lỗi xác thực
-    handleAuthError() {
-        this.isAuthenticated = false;
-        this.currentUser = null;
-        this.redirectToLogin();
+    showError(message) {
+        // Hiển thị thông báo lỗi
+        const notification = document.createElement('div');
+        notification.className = 'notification error';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 3000);
     }
+}
 
-    // Chuyển hướng đến trang đăng nhập
-    redirectToLogin() {
-        window.location.href = '/login.html';
-    }
-} 
+// Khởi tạo Auth Manager
+document.addEventListener('DOMContentLoaded', () => {
+    new AuthManager();
+}); 
