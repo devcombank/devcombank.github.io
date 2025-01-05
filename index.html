@@ -96,9 +96,13 @@
         </section>
 
         <!-- Pricing Section -->
-            <div class="container">
-                <h2>Nạp Tiền Tài Khoản</h2>
-                <p>Chọn phương thức thanh toán phù hợp với bạn</p>
+        <div class="modal" id="pricingModal">
+            <div class="modal-content">
+                <span class="modal-close">&times;</span>
+                <div class="payment-header">
+                    <h2>Nạp Tiền Tài Khoản</h2>
+                    <p>Chọn phương thức thanh toán phù hợp với bạn</p>
+                </div>
 
                 <div class="payment-methods">
                     <!-- Chuyển khoản ngân hàng -->
@@ -179,7 +183,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
 
     <!-- Footer -->
@@ -201,96 +205,6 @@
 
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
-
-    <!-- Modal -->
-    <div class="modal" id="pricingModal">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <div class="payment-header">
-                <h2>Nạp Tiền Tài Khoản</h2>
-                <p>Chọn phương thức thanh toán phù hợp với bạn</p>
-            </div>
-
-            <div class="payment-methods">
-                <!-- Chuyển khoản ngân hàng -->
-                <div class="payment-method active" data-method="bank">
-                    <div class="method-header">
-                        <i class="fas fa-university"></i>
-                        <span>Chuyển khoản ngân hàng</span>
-                    </div>
-                </div>
-
-                <!-- Ví điện tử -->
-                <div class="payment-method" data-method="momo">
-                    <div class="method-header">
-                        <i class="fas fa-wallet"></i>
-                        <span>Ví MoMo</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="payment-details">
-                <!-- Form chuyển khoản -->
-                <div class="payment-form bank-transfer active">
-                    <div class="bank-info">
-                        <div class="qr-code">
-                            <div id="qrcode"></div>
-                            <button class="btn-copy-code">
-                                <i class="fas fa-download"></i> Tải mã QR
-                            </button>
-                        </div>
-                        <div class="bank-details">
-                            <div class="detail-item">
-                                <span class="label">Số tài khoản:</span>
-                                <div class="value-wrap">
-                                    <span class="value">0123456789</span>
-                                    <button class="btn-copy" data-copy="0123456789">
-                                        <i class="fas fa-copy"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="detail-item">
-                                <span class="label">Chủ tài khoản:</span>
-                                <span class="value">NGUYEN VAN A</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="label">Ngân hàng:</span>
-                                <span class="value">MB Bank</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="label">Nội dung CK:</span>
-                                <div class="value-wrap">
-                                    <span class="value">VLID123456</span>
-                                    <button class="btn-copy" data-copy="VLID123456">
-                                        <i class="fas fa-copy"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="payment-note">
-                        <p><i class="fas fa-info-circle"></i> Lưu ý:</p>
-                        <ul>
-                            <li>Vui lòng chuyển khoản đúng nội dung để được cộng tiền tự động</li>
-                            <li>Nếu sau 5 phút chưa nhận được tiền, vui lòng liên hệ Admin</li>
-                            <li>Không hỗ trợ xử lý với nội dung chuyển khoản sai</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Form MoMo -->
-                <div class="payment-form momo-transfer">
-                    <div class="momo-info">
-                        <img src="assets/images/momo-qr.png" alt="MoMo QR">
-                        <div class="momo-details">
-                            <p>Số điện thoại: 0987654321</p>
-                            <p>Chủ tài khoản: NGUYEN VAN A</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
 
