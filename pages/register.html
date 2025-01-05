@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VL Bank - Đăng Ký</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="logo-section">
+                <div class="logo-text">
+                    <span class="vl-logo">VL</span>
+                    <i class="logo-icon fa-solid fa-shield"></i>
+                </div>
+            </div>
+            <h1>Đăng Ký Tài Khoản<br>VL Bank</h1>
+            
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label for="username">Tên đăng nhập</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="login-btn">Đăng Ký</button>
+                <p class="register-link">Đã có tài khoản? <a href="auth.html">Đăng nhập ngay</a></p>
+            </form>
+        </div>
+        <div class="auth-image" role="img" aria-label="Hình ảnh giao dịch thành công">
+            <!-- Hình ảnh sẽ được hiển thị thông qua CSS background-image -->
+        </div>
+    </div>
+
+    <script src="../assets/js/register.js"></script>
+</body>
+</html> 

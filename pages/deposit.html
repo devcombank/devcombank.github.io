@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devcombank - Nạp Tiền</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Logo</div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Trang chủ</a></li>
+                <li><a href="services.html">Dịch vụ cụ thể</a></li>
+                <li><a href="deposit.html">Nạp tiền vào tài khoản</a></li>
+                <li><a href="profile.html">Tài khoản của người dùng</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="deposit-section">
+            <h2>Nạp Tiền Vào Tài Khoản</h2>
+            <div class="balance-info">
+                <p><strong>Số dư hiện tại:</strong> <span id="currentBalance">0</span> VNĐ</p>
+            </div>
+            <form id="depositForm">
+                <div class="form-group">
+                    <label for="amount">Số tiền muốn nạp:</label>
+                    <input type="number" id="amount" min="10000" step="10000" required>
+                </div>
+                <div class="form-group">
+                    <label for="paymentMethod">Phương thức thanh toán:</label>
+                    <select id="paymentMethod" required>
+                        <option value="">Chọn phương thức</option>
+                        <option value="bank">Chuyển khoản ngân hàng</option>
+                        <option value="momo">Ví MoMo</option>
+                        <option value="vnpay">VNPay</option>
+                    </select>
+                </div>
+                <button type="submit">Nạp Tiền</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer giữ nguyên -->
+</body>
+</html> 

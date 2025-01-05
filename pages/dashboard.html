@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VL Bank - Dashboard</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-section">
+                <div class="logo-text">
+                    <span class="vl-logo">VL</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-home"></i> Trang chủ</a>
+                    </li>
+                    <li>
+                        <a href="profile.html"><i class="fas fa-user"></i> Tài khoản</a>
+                    </li>
+                    <li>
+                        <a href="services.html"><i class="fas fa-list"></i> Dịch vụ</a>
+                    </li>
+                    <li>
+                        <a href="deposit.html"><i class="fas fa-wallet"></i> Nạp tiền</a>
+                    </li>
+                    <li>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="dashboard-header">
+                <div class="welcome-text">
+                    Xin chào, <span id="userName">User</span>
+                </div>
+                <div class="header-actions">
+                    <div class="balance">
+                        Số dư: <span id="userBalance">0</span> VNĐ
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <!-- Quick Actions -->
+                <section class="quick-actions">
+                    <h2>Thao tác nhanh</h2>
+                    <div class="action-grid">
+                        <div class="action-card">
+                            <i class="fas fa-wallet"></i>
+                            <h3>Nạp tiền</h3>
+                            <a href="deposit.html" class="action-btn">Thực hiện</a>
+                        </div>
+                        <div class="action-card">
+                            <i class="fas fa-list"></i>
+                            <h3>Dịch vụ</h3>
+                            <a href="services.html" class="action-btn">Xem thêm</a>
+                        </div>
+                        <div class="action-card">
+                            <i class="fas fa-history"></i>
+                            <h3>Lịch sử</h3>
+                            <a href="#" class="action-btn">Xem chi tiết</a>
+                        </div>
+                        <div class="action-card">
+                            <i class="fas fa-plus"></i>
+                            <h3>Test Giao Dịch</h3>
+                            <button onclick="addTransaction(currentUser.username, 'Nạp tiền', 100000)" class="action-btn">
+                                Nạp 100,000 VNĐ
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recent Transactions -->
+                <section class="recent-transactions">
+                    <h2>Giao dịch gần đây</h2>
+                    <ul id="transactionList">
+                        <!-- Giao dịch sẽ được thêm vào đây -->
+                    </ul>
+                </section>
+
+                <canvas id="transactionChart" width="400" height="200"></canvas>
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html> 
