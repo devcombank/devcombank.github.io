@@ -10,53 +10,103 @@ class ProfileManager {
         try {
             const userData = await userService.getCurrentUser();
             this.updateProfileUI(userData);
+            this.loadTransactionHistory();
         } catch (error) {
-            console.error('Lỗi khi tải thông tin profile:', error);
-            window.location.href = '/login.html';
+            this.showError('Không thể tải thông tin người dùng');
         }
     }
 
     updateProfileUI(userData) {
-        // Cập nhật thông tin hiển thị
+        // Cập nhật thông tin cơ bản
         document.querySelector('.profile-name h1').textContent = userData.username;
-        document.querySelector('.info-item [data-field="email"]').textContent = userData.email;
-        document.querySelector('.info-item [data-field="phone"]').textContent = userData.phone || 'Chưa cập nhật';
-        document.querySelector('.info-item [data-field="joinDate"]').textContent = new Date(userData.createdAt).toLocaleDateString('vi-VN');
-        
-        // Cập nhật số dư và thông tin khác
-        document.querySelector('.stat-card .stat-value[data-field="balance"]').textContent = 
-            new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(userData.balance);
+        document.querySelector('.membership-badge').textContent = `${userData.membership.type} Member`;
+
+        // Cập nhật thông tin chi tiết
+        const infoFields = {
+            'email': userData.email,
+            'phone': userData.phone,
+            'joinDate': userData.joinDate,
+            'membership': `${userData.membership.type} (còn ${userData.membership.daysLeft} ngày)`
+        };
+
+        for (const [field, value] of Object.entries(infoFields)) {
+            const element = document.querySelector(`[data-field="${field}"]`);
+            if (element) element.textContent = value;
+        }
+
+        // Cập nhật thống kê
+        document.querySelector('[data-stat="bills"]').textContent = userData.stats.billsCreated;
+        document.querySelector('[data-stat="days"]').textContent = userData.membership.daysLeft;
+        document.querySelector('[data-stat="balance"]').textContent = 
+            new Intl.NumberFormat('vi-VN').format(userData.stats.balance) + ' VND';
+
+        // Cập nhật trạng thái 2FA
+        document.querySelector('#twoFactorToggle').checked = userData.security.twoFactorEnabled;
+
+        // Cập nhật API Keys
+        document.querySelector('#productionKey').value = userData.apiKeys.production;
+        document.querySelector('#testKey').value = userData.apiKeys.test;
+    }
+
+    async loadTransactionHistory() {
+        try {
+            const transactions = await userService.getTransactionHistory();
+            const container = document.querySelector('.transactions-list');
+            container.innerHTML = transactions.map(transaction => this.createTransactionHTML(transaction)).join('');
+        } catch (error) {
+            this.showError('Không thể tải lịch sử giao dịch');
+        }
+    }
+
+    createTransactionHTML(transaction) {
+        return `
+            <div class="transaction-item">
+                <div class="transaction-icon ${transaction.type}">
+                    <i class="fas fa-${transaction.isPositive ? 'arrow-down' : 'arrow-up'}"></i>
+                </div>
+                <div class="transaction-info">
+                    <h3>${transaction.title}</h3>
+                    <p>${transaction.description}</p>
+                    <span class="transaction-date">${transaction.date}</span>
+                </div>
+                <div class="transaction-amount ${transaction.isPositive ? 'positive' : 'negative'}">
+                    ${transaction.isPositive ? '+' : '-'}${new Intl.NumberFormat('vi-VN').format(transaction.amount)}đ
+                </div>
+            </div>
+        `;
     }
 
     initializeEventListeners() {
-        // Xử lý các sự kiện trong profile
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', () => this.switchTab(item.dataset.tab));
+        // Tab switching
+        document.querySelectorAll('.nav-item').forEach(button => {
+            button.addEventListener('click', () => this.switchTab(button.dataset.tab));
         });
 
-        // Xử lý nút đăng xuất
-        document.querySelector('.logout-btn')?.addEventListener('click', () => {
-            userService.logout();
+        // API Key regeneration
+        document.querySelectorAll('.regenerate-btn').forEach(button => {
+            button.addEventListener('click', async () => {
+                const keyType = button.dataset.keyType;
+                try {
+                    const newKey = await userService.regenerateApiKey(keyType);
+                    document.querySelector(`#${keyType}Key`).value = newKey;
+                    this.showSuccess('API Key đã được tạo mới');
+                } catch (error) {
+                    this.showError('Không thể tạo mới API Key');
+                }
+            });
         });
     }
 
-    switchTab(tabId) {
-        // Ẩn tất cả các tab
-        document.querySelectorAll('.tab-pane').forEach(tab => {
-            tab.classList.remove('active');
-        });
-        
-        // Hiển thị tab được chọn
-        document.getElementById(tabId).classList.add('active');
-        
-        // Cập nhật trạng thái active của nav items
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.classList.toggle('active', item.dataset.tab === tabId);
-        });
+    showSuccess(message) {
+        // Implement notification
+    }
+
+    showError(message) {
+        // Implement notification
     }
 }
 
-// Khởi tạo Profile Manager
+// Initialize Profile Manager
 document.addEventListener('DOMContentLoaded', () => {
     new ProfileManager();
 }); 
