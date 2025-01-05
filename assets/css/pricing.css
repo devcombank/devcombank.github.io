@@ -1,15 +1,28 @@
-/* Pricing Page Styles */
-.pricing-page {
-    padding: 100px 0;
-    background: #f8f9fa;
-    min-height: 100vh;
+/* Reset và style chung */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header styles */
 .page-title {
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 1rem;
     color: #333;
+    margin: 2rem 0 1rem;
 }
 
 .page-subtitle {
@@ -18,13 +31,12 @@
     margin-bottom: 3rem;
 }
 
+/* Pricing Plans */
 .pricing-plans {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    padding: 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    margin-bottom: 4rem;
 }
 
 .pricing-plan {
@@ -35,6 +47,11 @@
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
     position: relative;
+    overflow: hidden;
+}
+
+.pricing-plan:hover {
+    transform: translateY(-5px);
 }
 
 .pricing-plan.featured {
@@ -45,12 +62,11 @@
 .plan-badge {
     position: absolute;
     top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
+    right: -35px;
     background: #f1c40f;
     color: white;
-    padding: 5px 15px;
-    border-radius: 20px;
+    padding: 25px 40px 5px;
+    transform: rotate(45deg);
     font-size: 0.9rem;
     font-weight: bold;
 }
@@ -61,6 +77,7 @@
 
 .plan-header h2 {
     color: #333;
+    font-size: 1.8rem;
     margin-bottom: 1rem;
 }
 
@@ -90,13 +107,17 @@
     border-bottom: 1px solid #eee;
 }
 
+.plan-features li:last-child {
+    border-bottom: none;
+}
+
 .plan-features i {
     color: #2ecc71;
     margin-right: 0.5rem;
 }
 
 .btn-payment {
-    background: linear-gradient(to right, #f1c40f, #e74c3c);
+    background: linear-gradient(45deg, #f1c40f, #e74c3c);
     color: white;
     border: none;
     padding: 1rem 2rem;
@@ -105,6 +126,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     width: 100%;
+    font-size: 1.1rem;
 }
 
 .btn-payment:hover {
@@ -112,32 +134,19 @@
     box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .pricing-plans {
-        grid-template-columns: 1fr;
-    }
-
-    .pricing-plan.featured {
-        transform: scale(1);
-    }
-
-    .page-title {
-        font-size: 2rem;
-    }
-}
-
 /* Payment Info Section */
 .payment-info {
-    padding: 80px 0;
-    background: #fff;
+    background: white;
+    padding: 3rem 0;
+    border-radius: 15px;
+    margin-top: 4rem;
 }
 
 .payment-methods-info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    margin-top: 3rem;
+    margin: 2rem 0;
 }
 
 .bank-info-card {
@@ -150,7 +159,6 @@
 
 .bank-info-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 .bank-header {
@@ -168,23 +176,14 @@
     object-fit: contain;
 }
 
-.bank-header h3 {
-    margin: 0;
-    color: #333;
-}
-
-.account-details {
-    margin-bottom: 2rem;
-}
-
 .detail-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
-    padding: 0.5rem;
+    padding: 1rem;
     background: white;
     border-radius: 8px;
+    margin-bottom: 1rem;
 }
 
 .value-container {
@@ -199,48 +198,21 @@
     color: #f1c40f;
     cursor: pointer;
     padding: 0.5rem;
-    border-radius: 4px;
     transition: all 0.3s ease;
 }
 
 .copy-btn:hover {
-    background: rgba(241, 196, 15, 0.1);
+    color: #e4b90f;
+    transform: scale(1.1);
 }
 
-.qr-section {
-    text-align: center;
-}
-
-.qr-code {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 1rem;
-    padding: 1rem;
-    background: white;
-    border-radius: 8px;
-}
-
-.download-qr {
-    background: #f1c40f;
-    color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.download-qr:hover {
-    background: #e4b90f;
-    transform: translateY(-2px);
-}
-
+/* Notice Section */
 .payment-notice {
-    margin-top: 4rem;
-    padding: 2rem;
     background: #fff3cd;
-    border-radius: 15px;
     border-left: 5px solid #f1c40f;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-top: 3rem;
 }
 
 .payment-notice h3 {
@@ -269,164 +241,22 @@
     color: #f1c40f;
 }
 
-/* Animation */
-[data-aos] {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease;
-}
-
-[data-aos].aos-animate {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal.active {
-    display: flex;
-    animation: modalFadeIn 0.3s ease forwards;
-}
-
-.modal-content {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 500px;
-    position: relative;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-
-.modal-close {
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #666;
-    transition: all 0.3s ease;
-}
-
-.modal-close:hover {
-    color: #e74c3c;
-    transform: rotate(90deg);
-}
-
-.payment-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #eee;
-}
-
-.payment-header h2 {
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-.payment-header .selected-amount {
-    color: #e74c3c;
-    font-weight: bold;
-}
-
-.bank-transfer-info {
-    background: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: 10px;
-    margin-bottom: 1.5rem;
-}
-
-.bank-transfer-info h3 {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #333;
-    margin-bottom: 1rem;
-}
-
-.transfer-details .detail-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem;
-    background: white;
-    border-radius: 8px;
-    margin-bottom: 0.8rem;
-}
-
-.value-wrap {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.copy-btn {
-    background: none;
-    border: none;
-    color: #f1c40f;
-    cursor: pointer;
-    padding: 0.5rem;
-    transition: all 0.3s ease;
-}
-
-.copy-btn:hover {
-    color: #e4b90f;
-    transform: scale(1.1);
-}
-
-.qr-code-section {
-    text-align: center;
-    margin-top: 1.5rem;
-}
-
-#modal-qrcode {
-    background: white;
-    padding: 1rem;
-    border-radius: 8px;
-    display: inline-block;
-    margin-bottom: 1rem;
-}
-
-.btn-download-qr {
-    background: #f1c40f;
-    color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 0 auto;
-}
-
-.btn-download-qr:hover {
-    background: #e4b90f;
-    transform: translateY(-2px);
-}
-
-@keyframes modalFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
+/* Responsive */
+@media (max-width: 768px) {
+    .pricing-plans {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    .pricing-plan.featured {
+        transform: scale(1);
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .payment-methods-info {
+        grid-template-columns: 1fr;
     }
 } 
