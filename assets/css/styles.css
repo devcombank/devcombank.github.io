@@ -28,135 +28,144 @@ body {
 
 /* Header Styles */
 .header {
-    background: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     position: fixed;
-    width: 100%;
     top: 0;
-    z-index: 100;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 15px 0;
 }
 
 .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.logo a {
+/* Logo Styles */
+.logo-link {
+    text-decoration: none;
     display: flex;
     align-items: center;
-    text-decoration: none;
-    gap: 10px;
-}
-
-.logo img {
-    width: 40px;
-    height: 40px;
-}
-
-.logo span {
-    font-size: 1.5rem;
     font-weight: 700;
-    color: var(--dark-color);
+    font-size: 24px;
 }
 
-.nav-menu {
+.logo-letters {
+    color: #333;
+}
+
+.logo-dot {
+    color: #667eea;
+    margin: 0 2px;
+}
+
+.logo-text {
+    color: #333;
+}
+
+/* Navigation Links */
+.nav-links {
     display: flex;
+    align-items: center;
+    gap: 30px;
     list-style: none;
-    gap: 2rem;
+    margin: 0;
+    padding: 0;
 }
 
-.nav-menu li a {
+.nav-links a {
     text-decoration: none;
-    color: var(--dark-color);
+    color: #333;
     font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    position: relative;
+    transition: color 0.3s ease;
 }
 
-/* Hiệu ứng gạch chân */
-.nav-menu li a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 50%;
-    background: linear-gradient(to right, #f1c40f, #e74c3c);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
+.nav-links a:hover {
+    color: #667eea;
 }
 
-.nav-menu li a:hover::after {
-    width: 100%;
+/* Balance Display */
+.balance {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 8px;
+    color: #667eea;
 }
 
-/* Hiệu ứng hover */
-.nav-menu li a:hover {
-    color: #e74c3c;
-    background: rgba(231, 76, 60, 0.1);
+.balance i {
+    font-size: 16px;
+}
+
+.balance-amount {
+    font-weight: 600;
+}
+
+.balance-currency {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Profile Link */
+.profile-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #667eea;
+    color: white !important;
+    border-radius: 8px;
+    transition: all 0.3s ease !important;
+}
+
+.profile-link:hover {
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
-/* Hiệu ứng active */
-.nav-menu li a.active {
-    color: #e74c3c;
-    background: rgba(231, 76, 60, 0.1);
+.profile-link i {
+    font-size: 16px;
 }
 
-.nav-menu li a.active::after {
-    width: 100%;
-}
-
-/* Animation khi scroll */
-.header {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(5px);
-    transition: all 0.3s ease;
-}
-
-.header.scrolled {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background: rgba(255, 255, 255, 0.98);
-}
-
-/* Responsive Menu Button */
-.nav-toggle {
-    display: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 4px;
-}
-
-/* Media Queries */
+/* Responsive Design */
 @media (max-width: 768px) {
-    .nav-toggle {
-        display: block;
+    .nav-links {
+        gap: 15px;
     }
 
-    .nav-menu {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
-        flex-direction: column;
-        padding: 1rem;
-        gap: 1rem;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        transition: all 0.3s ease;
+    .balance-currency {
+        display: none;
     }
 
-    .nav-menu.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
+    .profile-link span {
+        display: none;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .nav {
+        padding: 0 10px;
+    }
+
+    .logo-text {
+        display: none;
+    }
+
+    .nav-links {
+        gap: 10px;
     }
 }
 
