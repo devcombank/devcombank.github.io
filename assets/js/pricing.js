@@ -4,6 +4,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const presetButtons = document.querySelectorAll('.preset-btn');
     let currentAmount = 50000;
 
+    const supportedBanks = [
+        'MB Bank',
+        'Techcombank',
+        'Vietcombank',
+        'TPBank',
+        'ACB',
+        'BIDV'
+    ];
+
     // Mở modal khi click nút nạp tiền
     document.querySelector('.deposit-button').addEventListener('click', function() {
         modal.style.display = 'block';

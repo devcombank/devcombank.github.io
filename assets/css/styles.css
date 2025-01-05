@@ -443,8 +443,8 @@ body {
 
 .logo-letters {
     font-size: 24px;
-    font-weight: 800;
-    color: white;
+    font-weight: 700;
+    color: var(--dark-color);
     background: linear-gradient(to right, #fff, #f1c40f);
     -webkit-background-clip: text;
     background-clip: text;
@@ -455,11 +455,12 @@ body {
 }
 
 .logo-dot {
-    color: #e74c3c;
+    color: var(--primary-color);
     font-size: 28px;
     margin: 0 2px;
     text-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
     animation: pulse 2s infinite;
+    font-weight: 700;
 }
 
 .logo-text {
