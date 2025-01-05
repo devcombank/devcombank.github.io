@@ -195,34 +195,34 @@
     <div class="modal" id="paymentModal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
+            
+            <!-- Payment Amount Selection -->
             <div class="payment-header">
-                <h2>Thanh Toán</h2>
+                <h2>Nạp Tiền Vào Tài Khoản</h2>
                 <div class="payment-amount-input">
-                    <label for="customAmount">Số tiền:</label>
+                    <label for="customAmount">Nhập số tiền muốn nạp:</label>
                     <div class="amount-wrapper">
                         <input type="number" id="customAmount" min="10000" step="10000" value="50000">
                         <span class="currency">VNĐ</span>
                     </div>
                 </div>
-                <!-- Thêm các gói preset -->
                 <div class="preset-amounts">
-                    <button class="preset-btn" data-amount="50000">50.000đ</button>
+                    <button class="preset-btn active" data-amount="50000">50.000đ</button>
                     <button class="preset-btn" data-amount="100000">100.000đ</button>
                     <button class="preset-btn" data-amount="200000">200.000đ</button>
                     <button class="preset-btn" data-amount="500000">500.000đ</button>
                 </div>
             </div>
 
-            <div class="payment-details">
-                <div class="bank-transfer-info">
-                    <h3><i class="fas fa-university"></i> Thông Tin Chuyển Khoản</h3>
-                    
-                    <div class="transfer-details">
-                        <div class="detail-item">
-                            <span class="label">Ngân hàng:</span>
-                            <span class="value">MB Bank</span>
-                        </div>
-                        
+            <!-- Payment Methods -->
+            <div class="payment-methods">
+                <!-- LIO Bank -->
+                <div class="payment-method-card">
+                    <div class="method-header lio">
+                        <div class="bank-logo">LIO</div>
+                        <h3>Bank</h3>
+                    </div>
+                    <div class="method-details">
                         <div class="detail-item">
                             <span class="label">Số tài khoản:</span>
                             <div class="value-wrap">
@@ -232,12 +232,10 @@
                                 </button>
                             </div>
                         </div>
-
                         <div class="detail-item">
                             <span class="label">Chủ tài khoản:</span>
                             <span class="value">HOANG THIEN TUNG</span>
                         </div>
-
                         <div class="detail-item">
                             <span class="label">Nội dung CK:</span>
                             <div class="value-wrap">
@@ -247,24 +245,38 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="qr-code-section">
-                        <div id="modal-qrcode"></div>
-                        <button class="btn-download-qr">
-                            <i class="fas fa-download"></i> Tải mã QR
-                        </button>
+                        <div class="qr-section">
+                            <div id="qrcode-lio" class="qr-code"></div>
+                            <button class="download-qr">
+                                <i class="fas fa-download"></i> Tải mã QR
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="payment-notice">
-                <p><i class="fas fa-info-circle"></i> Lưu ý:</p>
-                <ul>
-                    <li>Vui lòng chuyển khoản đúng số tiền và nội dung</li>
-                    <li>Hệ thống sẽ tự động cộng tiền sau 1-5 phút</li>
-                    <li>Giữ lại bill chuyển khoản để đối chiếu khi cần</li>
-                </ul>
+                <!-- PayPal -->
+                <div class="payment-method-card">
+                    <div class="method-header paypal">
+                        <div class="bank-logo">Pay</div>
+                        <h3>Pal</h3>
+                    </div>
+                    <div class="method-details">
+                        <div class="detail-item">
+                            <span class="label">Email PayPal:</span>
+                            <div class="value-wrap">
+                                <span class="value">example@email.com</span>
+                                <button class="copy-btn" data-copy="example@email.com">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="paypal-button-container">
+                            <button class="paypal-button">
+                                <i class="fab fa-paypal"></i> Thanh toán với PayPal
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
