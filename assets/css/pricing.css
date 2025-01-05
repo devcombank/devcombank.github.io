@@ -259,4 +259,374 @@ body {
     .payment-methods-info {
         grid-template-columns: 1fr;
     }
+}
+
+/* Modal Payment Details Styles */
+.payment-details {
+    background: #fff;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.bank-transfer-info {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.bank-transfer-info h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bank-transfer-info h3 i {
+    color: #f1c40f;
+}
+
+.transfer-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+    border-color: #f1c40f;
+    box-shadow: 0 2px 8px rgba(241, 196, 15, 0.1);
+}
+
+.detail-item .label {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.detail-item .value {
+    color: #333;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.value-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    color: #f1c40f;
+    padding: 5px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: rgba(241, 196, 15, 0.1);
+    transform: scale(1.1);
+}
+
+.copy-btn i {
+    font-size: 1rem;
+}
+
+/* Animation khi copy thành công */
+.copy-btn.success {
+    color: #2ecc71;
+    animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Header của modal payment */
+.payment-header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.payment-header h2 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.payment-header .selected-plan {
+    color: #f1c40f;
+    font-weight: 500;
+}
+
+.payment-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.payment-header .selected-amount {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .value-wrap {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .payment-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .bank-transfer-info {
+        padding: 15px;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .bank-transfer-info {
+        background: #2d3436;
+    }
+
+    .detail-item {
+        background: #2d3436;
+        border-color: #444;
+    }
+
+    .detail-item .label {
+        color: #ddd;
+    }
+
+    .detail-item .value {
+        color: #fff;
+    }
+
+    .payment-header h2 {
+        color: #fff;
+    }
+
+    .payment-header p {
+        color: #ddd;
+    }
+}
+
+/* QR Code Button Styles */
+.btn-download-qr {
+    background: linear-gradient(45deg, #f1c40f, #e74c3c);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: fit-content;
+    margin: 15px auto;
+    box-shadow: 0 4px 15px rgba(241, 196, 15, 0.3);
+}
+
+.btn-download-qr i {
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-download-qr:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(241, 196, 15, 0.4);
+}
+
+.btn-download-qr:hover i {
+    transform: translateY(-2px);
+}
+
+.btn-download-qr:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(241, 196, 15, 0.3);
+}
+
+/* QR Code Section */
+.qr-code-section {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+#modal-qrcode {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#modal-qrcode img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .btn-download-qr {
+        width: 100%;
+        padding: 12px 20px;
+    }
+
+    .qr-code-section {
+        padding: 15px;
+    }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    .qr-code-section {
+        background: #2d3436;
+    }
+
+    #modal-qrcode {
+        background: #fff; /* QR code vẫn giữ nền trắng để dễ quét */
+    }
+}
+
+/* PayPal specific styles */
+.bank-header.paypal {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    margin: -1rem -1rem 1rem -1rem;
+    border-bottom: 2px solid #003087;
+}
+
+.bank-header.paypal img {
+    width: 100px; /* PayPal logo thường rộng hơn */
+    height: auto;
+    object-fit: contain;
+}
+
+.bank-header.paypal h3 {
+    color: #003087; /* Màu xanh đặc trưng của PayPal */
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+/* Card style cho PayPal */
+.bank-info-card:has(.paypal) {
+    border: 1px solid #eee;
+    background: #fff;
+}
+
+.bank-info-card:has(.paypal):hover {
+    border-color: #003087;
+}
+
+/* QR code cho PayPal */
+#qrcode-paypal {
+    border: 2px solid #003087;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Button style cho PayPal */
+.bank-info-card:has(.paypal) .download-qr {
+    background: #0070ba; /* Màu xanh PayPal */
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 15px auto;
+}
+
+.bank-info-card:has(.paypal) .download-qr:hover {
+    background: #003087;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 112, 186, 0.3);
+}
+
+/* Copy button cho PayPal */
+.bank-info-card:has(.paypal) .copy-btn {
+    color: #0070ba;
+}
+
+.bank-info-card:has(.paypal) .copy-btn:hover {
+    background: rgba(0, 112, 186, 0.1);
+}
+
+/* Value styles cho PayPal */
+.bank-info-card:has(.paypal) .value {
+    color: #2c2e2f;
+    font-weight: 500;
+}
+
+/* Label styles cho PayPal */
+.bank-info-card:has(.paypal) .label {
+    color: #666;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .bank-header.paypal {
+        background: #003087;
+    }
+    
+    .bank-header.paypal h3 {
+        color: white;
+    }
+    
+    .bank-info-card:has(.paypal) {
+        background: #2d3436;
+    }
+    
+    .bank-info-card:has(.paypal) .value {
+        color: #fff;
+    }
+    
+    .bank-info-card:has(.paypal) .label {
+        color: #ddd;
+    }
+    
+    #qrcode-paypal {
+        background: white;
+    }
 } 
