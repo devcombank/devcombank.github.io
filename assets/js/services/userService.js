@@ -1,91 +1,109 @@
 class UserService {
     constructor() {
         this.API_URL = '/api';
-        this.currentUser = {
-            username: 'Hoàng Thiên Tùng',
-            email: 'admin@vvl6.com',
-            phone: '0987654321',
-            joinDate: '01/01/2025',
-            membership: {
-                type: 'Premium',
-                daysLeft: 25
-            },
-            stats: {
-                billsCreated: 1500,
-                balance: 500789142
-            },
-            security: {
-                twoFactorEnabled: false
-            },
-            apiKeys: {
-                production: 'sk_live_xxxxxxxxxxxxx',
-                test: 'sk_test_xxxxxxxxxxxxx'
-            }
-        };
+        this.DEBUG = true; // Bật chế độ debug
     }
 
+    // Kiểm tra trạng thái đăng nhập và token
+    checkAuthStatus() {
+        const token = localStorage.getItem('auth_token');
+        const userData = localStorage.getItem('user_data');
+        
+        if (this.DEBUG) {
+            console.log('Auth Status:', {
+                hasToken: !!token,
+                hasUserData: !!userData
+            });
+        }
+
+        if (!token || !userData) {
+            this.redirectToLogin();
+            return false;
+        }
+        return true;
+    }
+
+    // Lấy thông tin người dùng từ localStorage
     async getCurrentUser() {
         try {
-            // Giả lập API call
-            return this.currentUser;
-        } catch (error) {
-            throw error;
-        }
-    }
-
-    async updateProfile(profileData) {
-        try {
-            // Cập nhật thông tin người dùng
-            this.currentUser = {
-                ...this.currentUser,
-                ...profileData
-            };
-            return this.currentUser;
-        } catch (error) {
-            throw error;
-        }
-    }
-
-    async updateSecurity(securityData) {
-        try {
-            this.currentUser.security = {
-                ...this.currentUser.security,
-                ...securityData
-            };
-            return this.currentUser.security;
-        } catch (error) {
-            throw error;
-        }
-    }
-
-    async getTransactionHistory() {
-        return [
-            {
-                type: 'deposit',
-                title: 'Nạp tiền',
-                description: 'Nạp tiền qua LIO Bank',
-                date: '01/01/2024 15:30',
-                amount: 500000000,
-                isPositive: true
-            },
-            {
-                type: 'purchase',
-                title: 'Mua gói Premium',
-                description: 'Gia hạn gói Premium 30 ngày',
-                date: '01/01/2024 15:25',
-                amount: 200000,
-                isPositive: false
+            const userData = localStorage.getItem('user_data');
+            if (!userData) {
+                throw new Error('Không tìm thấy thông tin người dùng');
             }
-        ];
+
+            const user = JSON.parse(userData);
+            
+            if (this.DEBUG) {
+                console.log('Current User Data:', user);
+            }
+
+            // Kiểm tra tính hợp lệ của dữ liệu
+            if (!this.validateUserData(user)) {
+                throw new Error('Dữ liệu người dùng không hợp lệ');
+            }
+
+            return user;
+        } catch (error) {
+            console.error('Lỗi khi lấy thông tin người dùng:', error);
+            this.redirectToLogin();
+            throw error;
+        }
     }
 
-    async regenerateApiKey(type) {
-        const newKey = type === 'production' 
-            ? 'sk_live_' + Math.random().toString(36).substr(2, 20)
-            : 'sk_test_' + Math.random().toString(36).substr(2, 20);
-        
-        this.currentUser.apiKeys[type] = newKey;
-        return newKey;
+    // Kiểm tra tính hợp lệ của dữ liệu người dùng
+    validateUserData(userData) {
+        const requiredFields = [
+            'username',
+            'email',
+            'membership',
+            'stats',
+            'security',
+            'apiKeys'
+        ];
+
+        const isValid = requiredFields.every(field => {
+            const hasField = userData.hasOwnProperty(field);
+            if (!hasField && this.DEBUG) {
+                console.warn(`Missing required field: ${field}`);
+            }
+            return hasField;
+        });
+
+        if (this.DEBUG) {
+            console.log('User Data Validation:', isValid);
+        }
+
+        return isValid;
+    }
+
+    // Chuyển hướng về trang đăng nhập
+    redirectToLogin() {
+        if (this.DEBUG) {
+            console.log('Redirecting to login page...');
+        }
+        window.location.href = '/login.html';
+    }
+
+    // Cập nhật thông tin người dùng
+    async updateUserData(updates) {
+        try {
+            const currentData = await this.getCurrentUser();
+            const updatedData = { ...currentData, ...updates };
+            
+            if (this.DEBUG) {
+                console.log('Updating user data:', {
+                    current: currentData,
+                    updates: updates,
+                    result: updatedData
+                });
+            }
+
+            localStorage.setItem('user_data', JSON.stringify(updatedData));
+            return updatedData;
+        } catch (error) {
+            console.error('Lỗi khi cập nhật thông tin:', error);
+            throw error;
+        }
     }
 }
 

@@ -2,18 +2,89 @@ import userService from './services/userService.js';
 
 class ProfileManager {
     constructor() {
-        this.initializeProfile();
-        this.initializeEventListeners();
+        this.DEBUG = true; // Bật chế độ debug
+        this.init();
     }
 
-    async initializeProfile() {
+    async init() {
+        try {
+            // Kiểm tra trạng thái đăng nhập
+            if (!userService.checkAuthStatus()) {
+                return;
+            }
+
+            await this.loadAndDisplayUserData();
+            this.initializeEventListeners();
+
+            if (this.DEBUG) {
+                this.setupDebugTools();
+            }
+        } catch (error) {
+            console.error('Lỗi khởi tạo profile:', error);
+            this.showError('Không thể tải thông tin profile');
+        }
+    }
+
+    async loadAndDisplayUserData() {
         try {
             const userData = await userService.getCurrentUser();
+            
+            if (this.DEBUG) {
+                console.log('Loading user data:', userData);
+            }
+
             this.updateProfileUI(userData);
-            this.loadTransactionHistory();
+            await this.loadTransactionHistory();
+
+            // Kiểm tra và hiển thị trạng thái đồng bộ
+            this.checkSyncStatus(userData);
         } catch (error) {
-            this.showError('Không thể tải thông tin người dùng');
+            console.error('Lỗi khi tải dữ liệu:', error);
+            throw error;
         }
+    }
+
+    checkSyncStatus(userData) {
+        if (this.DEBUG) {
+            const syncStatus = {
+                localStorageData: localStorage.getItem('user_data'),
+                currentUserData: userData,
+                timestamp: new Date().toISOString()
+            };
+            console.log('Sync Status:', syncStatus);
+        }
+
+        // Hiển thị trạng thái đồng bộ trên UI
+        const syncIndicator = document.createElement('div');
+        syncIndicator.className = 'sync-status';
+        syncIndicator.innerHTML = `
+            <i class="fas fa-sync-alt"></i>
+            <span>Đã đồng bộ</span>
+        `;
+        document.querySelector('.profile-header').appendChild(syncIndicator);
+    }
+
+    setupDebugTools() {
+        // Thêm công cụ debug vào UI
+        const debugPanel = document.createElement('div');
+        debugPanel.className = 'debug-panel';
+        debugPanel.innerHTML = `
+            <h3>Debug Panel</h3>
+            <button id="checkSync">Kiểm tra đồng bộ</button>
+            <button id="clearData">Xóa dữ liệu</button>
+            <div id="debugOutput"></div>
+        `;
+        document.body.appendChild(debugPanel);
+
+        // Thêm các event listeners cho debug
+        document.getElementById('checkSync').addEventListener('click', () => {
+            this.checkSyncStatus(userService.getCurrentUser());
+        });
+
+        document.getElementById('clearData').addEventListener('click', () => {
+            localStorage.clear();
+            window.location.reload();
+        });
     }
 
     updateProfileUI(userData) {
@@ -106,7 +177,47 @@ class ProfileManager {
     }
 }
 
-// Initialize Profile Manager
+// Thêm CSS cho debug và sync status
+const style = document.createElement('style');
+style.textContent = `
+    .sync-status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px;
+        background: #e8f5e9;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+
+    .debug-panel {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #f5f5f5;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+
+    .debug-panel button {
+        margin: 5px;
+        padding: 5px 10px;
+    }
+
+    #debugOutput {
+        margin-top: 10px;
+        padding: 10px;
+        background: #fff;
+        border-radius: 4px;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+`;
+document.head.appendChild(style);
+
+// Khởi tạo Profile Manager
 document.addEventListener('DOMContentLoaded', () => {
     new ProfileManager();
 }); 
