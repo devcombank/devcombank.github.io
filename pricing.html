@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nạp Tiền - VietLicense.ID</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/pricing.css">
+</head>
+<body>
+    <!-- Header giữ nguyên như index.html -->
+    
+    <!-- Pricing Section -->
+    <section class="pricing-page">
+        <div class="container">
+            <h1 class="page-title">Nạp Tiền Tài Khoản</h1>
+            <p class="page-subtitle">Chọn gói dịch vụ phù hợp với bạn</p>
+
+            <div class="pricing-plans">
+                <!-- Gói Cơ Bản -->
+                <div class="pricing-plan">
+                    <div class="plan-header">
+                        <h2>Gói Cơ Bản</h2>
+                        <div class="price">
+                            <span class="amount">50.000</span>
+                            <span class="period">VNĐ</span>
+                        </div>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> 10 lần tạo bill</li>
+                            <li><i class="fas fa-check"></i> Hỗ trợ 24/7</li>
+                            <li><i class="fas fa-check"></i> Thời hạn 30 ngày</li>
+                        </ul>
+                    </div>
+                    <button class="btn-payment" onclick="showPaymentMethods('basic')">Chọn Gói</button>
+                </div>
+
+                <!-- Gói Premium -->
+                <div class="pricing-plan featured">
+                    <div class="plan-badge">Phổ biến</div>
+                    <div class="plan-header">
+                        <h2>Gói Premium</h2>
+                        <div class="price">
+                            <span class="amount">100.000</span>
+                            <span class="period">VNĐ</span>
+                        </div>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> 25 lần tạo bill</li>
+                            <li><i class="fas fa-check"></i> Hỗ trợ 24/7</li>
+                            <li><i class="fas fa-check"></i> Thời hạn 30 ngày</li>
+                            <li><i class="fas fa-check"></i> Ưu tiên hỗ trợ</li>
+                        </ul>
+                    </div>
+                    <button class="btn-payment" onclick="showPaymentMethods('premium')">Chọn Gói</button>
+                </div>
+
+                <!-- Gói Pro -->
+                <div class="pricing-plan">
+                    <div class="plan-header">
+                        <h2>Gói Pro</h2>
+                        <div class="price">
+                            <span class="amount">250.000</span>
+                            <span class="period">VNĐ</span>
+                        </div>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Không giới hạn lần tạo</li>
+                            <li><i class="fas fa-check"></i> Hỗ trợ 24/7</li>
+                            <li><i class="fas fa-check"></i> Thời hạn 30 ngày</li>
+                            <li><i class="fas fa-check"></i> Ưu tiên cao nhất</li>
+                            <li><i class="fas fa-check"></i> API tích hợp</li>
+                        </ul>
+                    </div>
+                    <button class="btn-payment" onclick="showPaymentMethods('pro')">Chọn Gói</button>
+                </div>
+            </div>
+
+            <section class="payment-info">
+                <div class="container">
+                    <h2 class="section-title">Thông Tin Thanh Toán</h2>
+                    
+                    <div class="payment-methods-info">
+                        <!-- MB Bank -->
+                        <div class="bank-info-card" data-aos="fade-up">
+                            <div class="bank-header">
+                                <img src="assets/images/banks/mbbank.png" alt="MB Bank">
+                                <h3>MB Bank</h3>
+                            </div>
+                            <div class="account-details">
+                                <div class="detail-row">
+                                    <span class="label">Số tài khoản:</span>
+                                    <div class="value-container">
+                                        <span class="value">9999999999</span>
+                                        <button class="copy-btn" data-copy="9999999999">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">Chủ tài khoản:</span>
+                                    <span class="value">HOANG THIEN TUNG</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">Nội dung CK:</span>
+                                    <div class="value-container">
+                                        <span class="value">VLID123456</span>
+                                        <button class="copy-btn" data-copy="VLID123456">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="qr-section">
+                                <div id="qrcode-mb" class="qr-code"></div>
+                                <button class="download-qr">
+                                    <i class="fas fa-download"></i> Tải mã QR
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- MOMO -->
+                        <div class="bank-info-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="bank-header momo">
+                                <img src="assets/images/momo-logo.png" alt="MoMo">
+                                <h3>Ví MoMo</h3>
+                            </div>
+                            <div class="account-details">
+                                <div class="detail-row">
+                                    <span class="label">Số điện thoại:</span>
+                                    <div class="value-container">
+                                        <span class="value">0987654321</span>
+                                        <button class="copy-btn" data-copy="0987654321">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">Chủ ví:</span>
+                                    <span class="value">HOANG THIEN TUNG</span>
+                                </div>
+                            </div>
+                            <div class="qr-section">
+                                <div id="qrcode-momo" class="qr-code"></div>
+                                <button class="download-qr">
+                                    <i class="fas fa-download"></i> Tải mã QR
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Thêm phần lưu ý -->
+                    <div class="payment-notice" data-aos="fade-up" data-aos-delay="200">
+                        <h3><i class="fas fa-exclamation-circle"></i> Lưu ý quan trọng</h3>
+                        <ul>
+                            <li>Vui lòng chuyển khoản đúng nội dung để được cộng tiền tự động</li>
+                            <li>Nếu sau 5 phút chưa nhận được tiền, vui lòng liên hệ Admin</li>
+                            <li>Không hỗ trợ xử lý với nội dung chuyển khoản sai</li>
+                            <li>Giữ lại bill chuyển khoản để đối chiếu khi cần thiết</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- Payment Modal -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="payment-header">
+                <h2>Thanh Toán <span class="selected-plan">Gói Cơ Bản</span></h2>
+                <p>Số tiền: <span class="selected-amount">50.000</span> VNĐ</p>
+            </div>
+
+            <div class="payment-details">
+                <div class="bank-transfer-info">
+                    <h3><i class="fas fa-university"></i> Thông Tin Chuyển Khoản</h3>
+                    
+                    <div class="transfer-details">
+                        <div class="detail-item">
+                            <span class="label">Ngân hàng:</span>
+                            <span class="value">MB Bank</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="label">Số tài khoản:</span>
+                            <div class="value-wrap">
+                                <span class="value">9999999999</span>
+                                <button class="copy-btn" data-copy="9999999999">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="label">Chủ tài khoản:</span>
+                            <span class="value">HOANG THIEN TUNG</span>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="label">Nội dung CK:</span>
+                            <div class="value-wrap">
+                                <span class="value" id="transferContent">VLID123456</span>
+                                <button class="copy-btn" data-copy="VLID123456">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qr-code-section">
+                        <div id="modal-qrcode"></div>
+                        <button class="btn-download-qr">
+                            <i class="fas fa-download"></i> Tải mã QR
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-notice">
+                <p><i class="fas fa-info-circle"></i> Lưu ý:</p>
+                <ul>
+                    <li>Vui lòng chuyển khoản đúng số tiền và nội dung</li>
+                    <li>Hệ thống sẽ tự động cộng tiền sau 1-5 phút</li>
+                    <li>Giữ lại bill chuyển khoản để đối chiếu khi cần</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="assets/js/script.js"></script>
+</body>
+</html> 

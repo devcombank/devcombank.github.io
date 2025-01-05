@@ -132,3 +132,119 @@ function createBill(bankName) {
     console.log(`Creating bill for ${bankName}`);
     // Có thể mở modal hoặc chuyển hướng đến trang tạo bill
 }
+
+// Copy to clipboard function
+document.querySelectorAll('.copy-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const textToCopy = button.dataset.copy;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            // Show success feedback
+            const originalIcon = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i>';
+            setTimeout(() => {
+                button.innerHTML = originalIcon;
+            }, 2000);
+        });
+    });
+});
+
+// Generate QR Codes
+window.addEventListener('load', () => {
+    // MB Bank QR
+    new QRCode(document.getElementById('qrcode-mb'), {
+        text: 'MB Bank: 9999999999\nHOANG THIEN TUNG\nVLID123456',
+        width: 180,
+        height: 180
+    });
+
+    // MoMo QR
+    new QRCode(document.getElementById('qrcode-momo'), {
+        text: 'MoMo: 0987654321\nHOANG THIEN TUNG',
+        width: 180,
+        height: 180
+    });
+});
+
+// Download QR Code
+document.querySelectorAll('.download-qr').forEach(button => {
+    button.addEventListener('click', function() {
+        const qrImage = this.previousElementSibling.querySelector('img');
+        if (qrImage) {
+            const link = document.createElement('a');
+            link.download = 'qr-code.png';
+            link.href = qrImage.src;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    });
+});
+
+// Xử lý hiển thị modal khi chọn gói
+function showPaymentMethods(plan) {
+    const modal = document.getElementById('paymentModal');
+    const planInfo = {
+        basic: { name: 'Gói Cơ Bản', amount: '50.000' },
+        premium: { name: 'Gói Premium', amount: '100.000' },
+        pro: { name: 'Gói Pro', amount: '250.000' }
+    };
+
+    // Cập nhật thông tin gói được chọn
+    document.querySelector('.selected-plan').textContent = planInfo[plan].name;
+    document.querySelector('.selected-amount').textContent = planInfo[plan].amount;
+
+    // Tạo QR code mới
+    const qrContainer = document.getElementById('modal-qrcode');
+    qrContainer.innerHTML = ''; // Xóa QR code cũ
+    
+    const qrText = `MB BANK
+STK: 9999999999
+CTK: HOANG THIEN TUNG
+ND: VLID123456
+SO TIEN: ${planInfo[plan].amount} VND`;
+
+    new QRCode(qrContainer, {
+        text: qrText,
+        width: 200,
+        height: 200,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // Hiển thị modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Đóng modal
+document.querySelector('.modal-close').addEventListener('click', () => {
+    document.getElementById('paymentModal').classList.remove('active');
+    document.body.style.overflow = '';
+});
+
+// Click bên ngoài để đóng modal
+window.addEventListener('click', (e) => {
+    const modal = document.getElementById('paymentModal');
+    if (e.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+// Copy to clipboard với animation
+document.querySelectorAll('.copy-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const textToCopy = button.dataset.copy;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            const originalIcon = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i>';
+            button.style.color = '#2ecc71';
+            
+            setTimeout(() => {
+                button.innerHTML = originalIcon;
+                button.style.color = '';
+            }, 2000);
+        });
+    });
+});
