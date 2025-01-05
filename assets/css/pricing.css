@@ -150,24 +150,26 @@ body {
 }
 
 .bank-info-card {
-    background: #f8f9fa;
+    background: white;
     border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
 .bank-info-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 .bank-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #eee;
+    gap: 5px;
+    padding: 20px;
+    border-radius: 12px;
+    margin: -25px -25px 20px -25px;
+    height: 80px;
 }
 
 .bank-header img {
@@ -526,23 +528,19 @@ body {
 
 /* PayPal specific styles */
 .bank-header.paypal {
-    background: #ffffff;
-    padding: 15px;
-    border-radius: 10px;
-    margin: -1rem -1rem 1rem -1rem;
-    border-bottom: 2px solid #003087;
+    background: #003087;
+    color: white;
 }
 
-.bank-header.paypal img {
-    width: 100px; /* PayPal logo thường rộng hơn */
-    height: auto;
-    object-fit: contain;
+.bank-header.paypal .bank-logo {
+    color: white;
+    font-weight: 700;
 }
 
 .bank-header.paypal h3 {
-    color: #003087; /* Màu xanh đặc trưng của PayPal */
-    font-size: 1.3rem;
-    margin: 0;
+    color: #169BD7;
+    font-weight: 700;
+    font-size: 24px;
 }
 
 /* Card style cho PayPal */
@@ -633,28 +631,21 @@ body {
 
 /* LIO Bank specific styles */
 .bank-header.lio {
-    background: linear-gradient(135deg, #000000, #1a1a1a);
-    padding: 20px;
-    border-radius: 12px;
-    margin: -1rem -1rem 1.5rem -1rem;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: #000000;
+    color: white;
 }
 
-.bank-header.lio img {
-    width: 45px;
-    height: 45px;
-    object-fit: contain;
-    filter: brightness(0) invert(1);
+.bank-header.lio .bank-logo {
+    background: white;
+    color: #000;
+    padding: 5px 10px;
+    border-radius: 8px;
 }
 
 .bank-header.lio h3 {
     color: white;
-    font-size: 1.4rem;
-    margin: 0;
     font-weight: 600;
+    font-size: 24px;
 }
 
 /* Card style cho LIO Bank */
@@ -842,4 +833,302 @@ body {
     .back-button:hover {
         background: #333;
     }
+}
+
+/* Payment Methods Container */
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Common styles for payment cards */
+.bank-info-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Bank Headers with Text Logo */
+.bank-header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 20px;
+    border-radius: 12px;
+    margin: -25px -25px 20px -25px;
+    height: 80px;
+}
+
+/* Common Logo Styles */
+.bank-logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* LIO Bank Header */
+.bank-header.lio {
+    background: #000000;
+    color: white;
+}
+
+.bank-header.lio .bank-logo {
+    background: white;
+    color: #000;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.bank-header.lio h3 {
+    color: white;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+/* PayPal Header */
+.bank-header.paypal {
+    background: #003087;
+    color: white;
+}
+
+.bank-header.paypal .bank-logo {
+    color: white;
+    font-weight: 700;
+}
+
+.bank-header.paypal h3 {
+    color: #169BD7;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .bank-header {
+        height: 70px;
+        padding: 15px;
+    }
+
+    .bank-logo {
+        font-size: 20px;
+    }
+
+    .bank-header h3 {
+        font-size: 20px;
+    }
+}
+
+/* Account Details */
+.account-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 0;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    min-height: 60px;
+}
+
+/* QR Code section */
+.qr-section {
+    text-align: center;
+    padding-top: 25px;
+    margin-top: auto;
+    border-top: 1px solid #eee;
+}
+
+.qr-code {
+    width: 200px;
+    height: 200px;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid #eee;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Download QR buttons - Thống nhất style */
+.download-qr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 160px;
+    margin: 0 auto;
+    border: none;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .payment-methods {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .bank-info-card {
+        padding: 20px;
+    }
+
+    .bank-header {
+        margin: -20px -20px 15px -20px;
+        height: 70px;
+    }
+
+    .qr-code {
+        width: 180px;
+        height: 180px;
+    }
+
+    .download-qr {
+        width: 140px;
+        padding: 10px 20px;
+    }
+}
+
+/* Payment Amount Input Styles */
+.payment-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.payment-amount-input {
+    margin: 20px 0;
+}
+
+.amount-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#customAmount {
+    width: 200px;
+    padding: 12px 15px;
+    font-size: 1.2rem;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#customAmount:focus {
+    border-color: #000;
+    outline: none;
+}
+
+.currency {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #666;
+}
+
+/* Preset Amount Buttons */
+.preset-amounts {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.preset-btn {
+    padding: 10px 20px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    background: white;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.preset-btn:hover {
+    border-color: #000;
+    color: #000;
+}
+
+.preset-btn.active {
+    background: #000;
+    color: white;
+    border-color: #000;
+}
+
+/* QR Code Modal */
+.qr-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.qr-modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.qr-modal-content h3 {
+    margin-bottom: 20px;
+}
+
+#modal-qrcode {
+    margin: 20px 0;
+}
+
+.btn-download-qr {
+    background: #000;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+.btn-download-qr:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 } 

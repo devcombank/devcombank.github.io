@@ -102,8 +102,8 @@
                         <!-- LIO Bank -->
                         <div class="bank-info-card" data-aos="fade-up">
                             <div class="bank-header lio">
-                                <img src="assets/images/banks/lio-logo.png" alt="LIO Bank">
-                                <h3>LIO Bank</h3>
+                                <div class="bank-logo">LIO</div>
+                                <h3>Bank</h3>
                             </div>
                             <div class="account-details">
                                 <div class="detail-row">
@@ -140,15 +140,16 @@
                         <!-- PayPal -->
                         <div class="bank-info-card" data-aos="fade-up" data-aos-delay="100">
                             <div class="bank-header paypal">
-                                <img src="assets/images/banks/paypal-logo.png" alt="PayPal">
-                                <h3>PayPal</h3>
+                                <div class="bank-logo">Pay</div>
+                                <h3>Pal</h3>
                             </div>
                             <div class="account-details">
                                 <div class="detail-row">
                                     <span class="label">Email PayPal:</span>
                                     <div class="value-container">
                                         <span class="value">lucboo999@gmail.com</span>
-                                        <button class="copy-btn" data-copy="lucboo999@gmail.com                                            <i class="fas fa-copy"></i>
+                                        <button class="copy-btn" data-copy="lucboo999@gmail.com">
+                                            <i class="fas fa-copy"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -195,8 +196,21 @@
         <div class="modal-content">
             <span class="modal-close">&times;</span>
             <div class="payment-header">
-                <h2>Thanh Toán <span class="selected-plan">Gói Cơ Bản</span></h2>
-                <p>Số tiền: <span class="selected-amount">50.000</span> VNĐ</p>
+                <h2>Thanh Toán</h2>
+                <div class="payment-amount-input">
+                    <label for="customAmount">Số tiền:</label>
+                    <div class="amount-wrapper">
+                        <input type="number" id="customAmount" min="10000" step="10000" value="50000">
+                        <span class="currency">VNĐ</span>
+                    </div>
+                </div>
+                <!-- Thêm các gói preset -->
+                <div class="preset-amounts">
+                    <button class="preset-btn" data-amount="50000">50.000đ</button>
+                    <button class="preset-btn" data-amount="100000">100.000đ</button>
+                    <button class="preset-btn" data-amount="200000">200.000đ</button>
+                    <button class="preset-btn" data-amount="500000">500.000đ</button>
+                </div>
             </div>
 
             <div class="payment-details">
