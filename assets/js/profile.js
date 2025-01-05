@@ -2,112 +2,63 @@ import userService from './services/userService.js';
 
 class ProfileManager {
     constructor() {
-        console.log("ProfileManager initialized");
         this.init();
     }
 
     async init() {
         try {
-            console.log("Initializing profile...");
-            const state = await userService.checkInitialState();
-            console.log("Profile state:", state);
-
-            if (!state.isAuthenticated) {
-                console.log("User not authenticated, showing auth forms");
-                this.showAuthForms();
-            } else {
-                console.log("User authenticated, showing profile");
-                await this.showUserProfile();
+            // Kiểm tra đăng nhập
+            if (!userService.isLoggedIn()) {
+                window.location.href = '/login.html';
+                return;
             }
+
+            const userData = await userService.getUserProfile();
+            this.renderProfile(userData);
+            this.initializeEventListeners();
         } catch (error) {
-            console.error("Profile initialization error:", error);
-            this.showError('Không thể tải thông tin profile');
+            console.error('Profile initialization failed:', error);
+            // Hiển thị thông báo lỗi
+            this.showError('Không thể tải thông tin tài khoản');
         }
     }
 
-    showAuthForms() {
-        console.log("Rendering auth forms");
-        const profileContainer = document.querySelector('.profile-container');
-        profileContainer.innerHTML = `
-            <div class="auth-section">
-                <div class="auth-header">
-                    <h2>Đăng Nhập / Đăng Ký</h2>
-                    <p>Vui lòng đăng nhập hoặc đăng ký để tiếp tục</p>
-                </div>
-                <div class="auth-forms">
-                    <div class="login-form">
-                        <h3>Đăng Nhập</h3>
-                        <form id="loginForm">
-                            <input type="email" placeholder="Email" required>
-                            <input type="password" placeholder="Mật khẩu" required>
-                            <button type="submit">Đăng Nhập</button>
-                        </form>
-                    </div>
-                    <div class="auth-divider">
-                        <span>hoặc</span>
-                    </div>
-                    <div class="register-form">
-                        <h3>Đăng Ký</h3>
-                        <form id="registerForm">
-                            <input type="email" placeholder="Email" required>
-                            <input type="text" placeholder="Tên người dùng" required>
-                            <input type="password" placeholder="Mật khẩu" required>
-                            <input type="password" placeholder="Xác nhận mật khẩu" required>
-                            <button type="submit">Đăng Ký</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        `;
+    renderProfile(userData) {
+        if (!userData) return;
 
-        this.initializeAuthListeners();
-    }
+        // Cập nhật UI với dữ liệu người dùng
+        document.querySelector('.profile-name').textContent = userData.username;
+        document.querySelector('[data-field="email"] span').textContent = userData.email;
+        document.querySelector('[data-field="phone"] span').textContent = userData.phone || 'Chưa cập nhật';
+        
+        // Cập nhật thống kê
+        const stats = userData.stats || { balance: 0, billsCreated: 0 };
+        document.querySelector('[data-stat="bills"] .stat-value').textContent = stats.billsCreated;
+        document.querySelector('[data-stat="balance"] .stat-value').textContent = 
+            new Intl.NumberFormat('vi-VN').format(stats.balance);
 
-    async showUserProfile() {
-        console.log("Rendering user profile");
-        try {
-            const userData = await userService.getCurrentUser();
-            const profileContainer = document.querySelector('.profile-container');
-            
-            // Hiển thị thông tin profile như trong mẫu
-            profileContainer.innerHTML = `
-                <div class="profile-header">
-                    <div class="profile-cover"></div>
-                    <div class="profile-info">
-                        <div class="profile-avatar">
-                            <img src="${userData.avatar || 'assets/images/avatar-default.png'}" alt="Avatar">
-                        </div>
-                        <div class="profile-name">
-                            <h1>${userData.username}</h1>
-                            <span class="membership-badge ${userData.membership.type.toLowerCase()}">
-                                <i class="fas fa-crown"></i> ${userData.membership.type} Member
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Các tab thông tin khác giữ nguyên như profile.html -->
-            `;
-        } catch (error) {
-            console.error('Lỗi khi tải profile:', error);
-            this.showError('Không thể tải thông tin profile');
+        // Cập nhật membership
+        const membership = userData.membership || { type: 'Free', daysLeft: 0 };
+        document.querySelector('[data-stat="days"] .stat-value').textContent = membership.daysLeft;
+        
+        // Cập nhật badge
+        const premiumBadge = document.querySelector('.premium-badge');
+        if (premiumBadge) {
+            premiumBadge.innerHTML = membership.type === 'Premium' 
+                ? '<i class="fas fa-crown"></i> Premium Member'
+                : '<i class="fas fa-user"></i> Free Member';
         }
     }
 
-    initializeAuthListeners() {
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            // Xử lý đăng nhập
-        });
-
-        document.getElementById('registerForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            // Xử lý đăng ký
-        });
+    showError(message) {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = message;
+        document.querySelector('.profile-container').prepend(errorDiv);
     }
 }
 
-// Initialize ProfileManager
+// Khởi tạo khi DOM đã sẵn sàng
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOM loaded, initializing ProfileManager...");
     new ProfileManager();
 }); 
