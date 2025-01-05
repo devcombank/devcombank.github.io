@@ -125,3 +125,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Xử lý tạo bill
+function createBill(bankName) {
+    // Thêm logic xử lý tạo bill ở đây
+    console.log(`Creating bill for ${bankName}`);
+    // Có thể mở modal hoặc chuyển hướng đến trang tạo bill
+}

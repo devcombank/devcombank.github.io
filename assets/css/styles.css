@@ -303,6 +303,7 @@ body {
 .services {
     padding: 80px 0;
     background: #f8f9fa;
+    display: block;
 }
 
 .section-title {
@@ -323,6 +324,8 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     padding: 1rem;
+    margin: 0 auto;
+    max-width: 1200px;
 }
 
 .bank-card {
@@ -724,4 +727,21 @@ section#pricing {
 
 .modal.active .modal-content {
     animation: modalFadeIn 0.3s ease forwards;
+}
+
+/* Bank Logo Fallback */
+.bank-logo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+    background: #f1c40f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bank-logo i {
+    font-size: 3rem;
+    color: white;
 }
