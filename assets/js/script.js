@@ -90,38 +90,37 @@ window.addEventListener('load', generateQRCode);
 
 // Xử lý hiển thị phần nạp tiền
 document.addEventListener('DOMContentLoaded', function() {
-    // Ẩn modal mặc định
+    // Lấy reference đến modal
     const pricingModal = document.getElementById('pricingModal');
-    pricingModal.style.display = 'none';
-
+    
     // Xử lý click vào nút nạp tiền
     document.querySelector('a[href="#pricing"]').addEventListener('click', function(e) {
-        e.preventDefault(); // Ngăn chặn hành vi mặc định của link
-        
-        // Hiển thị modal
-        pricingModal.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Ngăn scroll trang khi modal mở
+        e.preventDefault(); // Ngăn chặn chuyển trang
+        pricingModal.classList.add('active'); // Thêm class active để hiển thị
+        document.body.style.overflow = 'hidden'; // Ngăn scroll
     });
 
     // Xử lý đóng modal
     const closeModal = document.querySelector('.modal-close');
-    closeModal.addEventListener('click', function() {
-        pricingModal.style.display = 'none';
-        document.body.style.overflow = ''; // Cho phép scroll lại
-    });
+    if (closeModal) {
+        closeModal.addEventListener('click', function() {
+            pricingModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    }
 
     // Đóng modal khi click bên ngoài
     window.addEventListener('click', function(e) {
-        if (e.target == pricingModal) {
-            pricingModal.style.display = 'none';
+        if (e.target === pricingModal) {
+            pricingModal.classList.remove('active');
             document.body.style.overflow = '';
         }
     });
 
     // Đóng modal khi nhấn ESC
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && pricingModal.style.display === 'flex') {
-            pricingModal.style.display = 'none';
+        if (e.key === 'Escape' && pricingModal.classList.contains('active')) {
+            pricingModal.classList.remove('active');
             document.body.style.overflow = '';
         }
     });
