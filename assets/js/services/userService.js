@@ -1,110 +1,79 @@
 class UserService {
     constructor() {
         this.API_URL = '/api';
-        this.DEBUG = true; // Bật chế độ debug
+        console.log("UserService initialized");
     }
 
-    // Kiểm tra trạng thái đăng nhập và token
-    checkAuthStatus() {
+    async checkInitialState() {
+        console.log("Checking initial state...");
         const token = localStorage.getItem('auth_token');
         const userData = localStorage.getItem('user_data');
-        
-        if (this.DEBUG) {
-            console.log('Auth Status:', {
-                hasToken: !!token,
-                hasUserData: !!userData
-            });
-        }
 
         if (!token || !userData) {
-            this.redirectToLogin();
-            return false;
+            console.log("No auth data found");
+            return {
+                isAuthenticated: false,
+                balance: 0,
+                showAuthButtons: true
+            };
         }
-        return true;
-    }
 
-    // Lấy thông tin người dùng từ localStorage
-    async getCurrentUser() {
         try {
-            const userData = localStorage.getItem('user_data');
-            if (!userData) {
-                throw new Error('Không tìm thấy thông tin người dùng');
-            }
-
             const user = JSON.parse(userData);
-            
-            if (this.DEBUG) {
-                console.log('Current User Data:', user);
-            }
-
-            // Kiểm tra tính hợp lệ của dữ liệu
-            if (!this.validateUserData(user)) {
-                throw new Error('Dữ liệu người dùng không hợp lệ');
-            }
-
-            return user;
+            console.log("User data found:", user);
+            return {
+                isAuthenticated: true,
+                balance: user.stats?.balance || 0,
+                showAuthButtons: false
+            };
         } catch (error) {
-            console.error('Lỗi khi lấy thông tin người dùng:', error);
-            this.redirectToLogin();
-            throw error;
+            console.error("Error parsing user data:", error);
+            return {
+                isAuthenticated: false,
+                balance: 0,
+                showAuthButtons: true
+            };
         }
     }
 
-    // Kiểm tra tính hợp lệ của dữ liệu người dùng
-    validateUserData(userData) {
-        const requiredFields = [
-            'username',
-            'email',
-            'membership',
-            'stats',
-            'security',
-            'apiKeys'
-        ];
-
-        const isValid = requiredFields.every(field => {
-            const hasField = userData.hasOwnProperty(field);
-            if (!hasField && this.DEBUG) {
-                console.warn(`Missing required field: ${field}`);
-            }
-            return hasField;
-        });
-
-        if (this.DEBUG) {
-            console.log('User Data Validation:', isValid);
-        }
-
-        return isValid;
+    isLoggedIn() {
+        const isLoggedIn = !!localStorage.getItem('auth_token');
+        console.log("Checking login status:", isLoggedIn);
+        return isLoggedIn;
     }
 
-    // Chuyển hướng về trang đăng nhập
-    redirectToLogin() {
-        if (this.DEBUG) {
-            console.log('Redirecting to login page...');
+    async getCurrentUser() {
+        console.log("Getting current user...");
+        const userData = localStorage.getItem('user_data');
+        
+        if (!userData) {
+            console.log("No user data found");
+            throw new Error('Không tìm thấy thông tin người dùng');
         }
-        window.location.href = '/login.html';
-    }
 
-    // Cập nhật thông tin người dùng
-    async updateUserData(updates) {
         try {
-            const currentData = await this.getCurrentUser();
-            const updatedData = { ...currentData, ...updates };
-            
-            if (this.DEBUG) {
-                console.log('Updating user data:', {
-                    current: currentData,
-                    updates: updates,
-                    result: updatedData
-                });
-            }
-
-            localStorage.setItem('user_data', JSON.stringify(updatedData));
-            return updatedData;
+            return JSON.parse(userData);
         } catch (error) {
-            console.error('Lỗi khi cập nhật thông tin:', error);
+            console.error("Error parsing user data:", error);
             throw error;
         }
+    }
+
+    dispatchAuthEvent(type) {
+        console.log("Dispatching auth event:", type);
+        document.dispatchEvent(new CustomEvent('authStateChange', {
+            detail: { type }
+        }));
+    }
+
+    dispatchBalanceUpdate(balance) {
+        console.log("Dispatching balance update:", balance);
+        document.dispatchEvent(new CustomEvent('balanceUpdate', {
+            detail: { balance }
+        }));
     }
 }
 
-export default new UserService(); 
+// Export single instance
+const userService = new UserService();
+export default userService; 

@@ -585,4 +585,71 @@ input:checked + .slider:before {
     .back-button:hover {
         background: #333;
     }
+}
+
+/* Thêm styles cho phần auth forms */
+.auth-section {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-forms {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.login-form,
+.register-form {
+    flex: 1;
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    color: #666;
+}
+
+.auth-divider span {
+    padding: 0 15px;
+    background: white;
+}
+
+/* Form styles */
+.auth-forms form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-forms input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.auth-forms button {
+    padding: 12px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.auth-forms button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 } 
