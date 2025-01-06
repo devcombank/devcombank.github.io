@@ -3,37 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devcombank - Tài Khoản</title>
+    <title>VL Bank - Thông tin tài khoản</title>
     <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <!-- Header (giữ nguyên như index.html) -->
-    <header>
-        <div class="logo">Logo</div>
-        <nav>
-            <ul>
-                <li><a href="../index.html">Trang chủ</a></li>
-                <li><a href="#services">Dịch vụ cụ thể</a></li>
-                <li><a href="#deposit">Nạp tiền vào tài khoản</a></li>
-                <li><a href="#account">Tài khoản của người dùng</a></li>
-                <li><a href="#contact">Liên hệ</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <!-- Hồ Sơ Người Dùng -->
-        <section id="account">
-            <h2>Hồ Sơ Người Dùng</h2>
-            <div class="user-profile">
-                <p><strong>Tên:</strong> Nguyễn Văn A</p>
-                <p><strong>Email:</strong> nguyenvana@example.com</p>
-                <p><strong>Số điện thoại:</strong> 0123456789</p>
-                <button id="editProfile">Chỉnh Sửa Hồ Sơ</button>
+    <div class="dashboard-container">
+        <!-- Sidebar giống dashboard -->
+        <aside class="sidebar">
+            <div class="logo-section">
+                <div class="logo-text">
+                    <span class="vl-logo">VL</span>
+                </div>
+                <!-- Thêm nút toggle -->
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-        </section>
-    </main>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <ul>
+                        <li>
+                            <a href="dashboard.html" data-tooltip="Dashboard">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="profile.html" data-tooltip="Tài khoản">
+                                <i class="fas fa-user"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="deposit.html" data-tooltip="Nạp tiền">
+                                <i class="fas fa-wallet"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="withdraw.html" data-tooltip="Rút tiền">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="history.html" data-tooltip="Lịch sử">
+                                <i class="fas fa-history"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="services.html" data-tooltip="Dịch vụ">
+                                <i class="fas fa-list"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="support.html" data-tooltip="Hỗ trợ">
+                                <i class="fas fa-headset"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="logoutBtn" data-tooltip="Đăng xuất">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
 
-    <!-- Footer (giữ nguyên như index.html) -->
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="profile-container">
+                <h1>Thông tin tài khoản</h1>
+                
+                <!-- Avatar Section -->
+                <div class="profile-section">
+                    <div class="avatar-container">
+                        <img id="userAvatar" src="../assets/images/default-avatar.png" alt="Avatar">
+                        <label for="avatarUpload" class="upload-btn">
+                            <i class="fas fa-camera"></i>
+                        </label>
+                        <input type="file" id="avatarUpload" accept="image/*" hidden>
+                    </div>
+                </div>
+
+                <!-- Account Stats -->
+                <div class="profile-section">
+                    <h2>Thống kê tài khoản</h2>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">Ngày tham gia</span>
+                            <span id="joinDate" class="stat-value">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Số dư hiện tại</span>
+                            <span id="currentBalance" class="stat-value">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Tổng giao dịch</span>
+                            <span id="totalTransactions" class="stat-value">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h2>Thông tin cá nhân</h2>
+                    <form id="profileForm" class="profile-form">
+                        <div class="form-group">
+                            <label for="username">Tên đăng nhập</label>
+                            <input type="text" id="username" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <button type="submit" class="save-btn">Lưu thay đổi</button>
+                    </form>
+                </div>
+
+                <div class="profile-section">
+                    <h2>Đổi mật khẩu</h2>
+                    <form id="passwordForm" class="profile-form">
+                        <div class="form-group">
+                            <label for="currentPassword">Mật khẩu hiện tại</label>
+                            <input type="password" id="currentPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">Mật khẩu mới</label>
+                            <input type="password" id="newPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Xác nhận mật khẩu mới</label>
+                            <input type="password" id="confirmPassword" required>
+                        </div>
+                        <button type="submit" class="save-btn">Đổi mật khẩu</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/js/profile.js"></script>
 </body>
 </html> 
