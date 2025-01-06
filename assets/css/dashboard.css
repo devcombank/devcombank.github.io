@@ -2,6 +2,7 @@
 .dashboard-container {
     display: flex;
     min-height: 100vh;
+    overflow: hidden; /* Đảm bảo nội dung không tràn */
 }
 
 /* Sidebar */
@@ -10,6 +11,12 @@
     background: #1a1a1a;
     color: white;
     padding: 20px;
+    flex-shrink: 0; /* Sidebar giữ nguyên kích thước */
+    position: fixed; /* Sidebar luôn cố định bên trái */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000; /* Đảm bảo sidebar nằm trên các nội dung khác */
 }
 
 .sidebar-nav ul {
@@ -41,11 +48,12 @@
     background: #333;
 }
 
-/* Main Content */
 .main-content {
+    margin-left: 250px; /* Đồng bộ với chiều rộng sidebar */
     flex: 1;
     background: #f5f7ff;
     padding: 20px;
+    overflow: auto; /* Thêm cuộn khi cần */
 }
 
 .dashboard-header {
@@ -56,7 +64,7 @@
     padding: 20px;
     background: white;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .welcome-text {
@@ -83,7 +91,7 @@
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .action-card i {
@@ -113,14 +121,7 @@
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.no-transactions {
-    text-align: center;
-    padding: 20px;
-    color: #666;
-    font-style: italic;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Biểu đồ */
@@ -129,7 +130,7 @@
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Giao dịch gần đây */
@@ -140,7 +141,7 @@
 
 .recent-transactions li {
     padding: 15px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -167,4 +168,4 @@
     padding: 20px;
     color: #666;
     font-style: italic;
-} 
+}
